@@ -503,4 +503,44 @@ function btwb_sc_default_params($params_list) {
   return $params;
 }
 
+
+
+///////////////////////////////////////////////////////////////////////////////
+// TinyMCE Hooks
+//
+
+// Registers the our tinymce plugin
+add_action('init', 'btwb_tinymce_buttons_init');
+function btwb_tinymce_buttons_init() {
+  // Permission check
+  if(!current_user_can('edit_posts') &&
+      !current_user_can('edit_pages') &&
+      get_user_option('rich_editing') == 'true') {
+  return;
+  }
+
+  // Registers the TinyMCE plugin
+  add_filter('mce_external_plugins', 'btwb_tinymce_buttons_register_plugin'); 
+
+  // Add callback to TinyMCE toolbar
+  add_filter('mce_buttons', 'btwb_tinymce_add_buttons');
+}
+
+function btwb_tinymce_buttons_register_plugin($plugin_array) {
+  $plugin_array['btwb_tinymce_buttons'] =
+    plugins_url('tinymce-buttons.js', __FILE__);
+  return $plugin_array;
+}
+
+function btwb_tinymce_add_buttons($buttons) {
+  array_push(
+    $buttons,
+    '|',
+    'btwb_button_wod',
+    'btwb_button_wod_list',
+    'btwb_button_activities',
+    'btwb_button_leaderboard');
+  return $buttons;
+}
+
 ?>
