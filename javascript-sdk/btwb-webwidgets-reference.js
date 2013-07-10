@@ -5,8 +5,16 @@ var BTWB_GYM_LEADERBOARD_URL = "//localhost:3000/webwidgets/gyms/leaderboard";
 
 // Uses JSONP to load HTML into an element.
 function btwbLoadHtml($, apiKey, element, url, params) {
-  $.getJSON(url + "?jsonp=?", params, function(data) {
-    $(element).html(data.html);
+  $.ajax({
+    dataType: "jsonp",
+    url: url,
+    data: params,
+    success: function(data) {
+      $(element).html(data.html);
+    },
+    complete: function(jqxhr, textStatus) {
+      console.log(textStatus);
+    }
   });
 }
 
