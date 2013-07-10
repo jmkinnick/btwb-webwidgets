@@ -27,9 +27,8 @@ License: GPLv2 or later
 // JAVASCRIPT SDK INTEGRATION PARAMETERS
 //
 define('BTWB_JAVASCRIPT_SDK_URL',
-  'http://localhost:3000/webwidgets/v1/all.js'); // port :3000 causes probs.
-  //'//www.kourier.org/wordpress/sdk.js');
-  //'//assets.beyondthewhiteboard.com/webwidgets-javascript-sdk/v1/all.js');
+  '//assets.beyondthewhiteboard.com/webwidgets/javascript/v1/btwb-webwidgets-reference.js');
+  //'//assets.beyondthewhiteboard.com/webwidgets/javascript/v1/all.js');
 define('BTWB_JAVASCRIPT_INIT_FILE', 'init.js');
 define('BTWB_JAVASCRIPT_CONFIG_OBJECT_NAME', 'BTWB_CONFIG');
 define('BTWB_JAVASCRIPT_API_KEY_PROPERTY', 'apiKey');
@@ -435,7 +434,8 @@ function btwb_shortcode_wod($atts) {
   return btwb_sc_html_tag(
     'btwb_gym_wod',
     $BTWB_SHORTCODE_WOD_PARAMS_LIST,
-    $atts);
+    $atts,
+    'Loading the Wod from Beyond the Whiteboard');
 }
 
 // Create the [wod_list] shortcode for displaying track events.
@@ -444,7 +444,8 @@ function btwb_shortcode_wod_list($atts) {
   return btwb_sc_html_tag(
     'btwb_gym_wod_list',
     $BTWB_SHORTCODE_WOD_LIST_PARAMS_LIST,
-    $atts);
+    $atts,
+    'Loading the Wods List from Beyond the Whiteboard');
 }
 
 // Create the [activities] shortcode for displaying gym activities
@@ -453,7 +454,8 @@ function btwb_shortcode_activities($atts) {
   return btwb_sc_html_tag(
     'btwb_gym_activities',
     $BTWB_SHORTCODE_ACTIVITIES_PARAMS_LIST,
-    $atts);
+    $atts,
+    "Loading the Gym's Posts from Beyond the Whiteboard");
 }
 
 // Create the [leaderboard] shortcode for displaying the workout leaderboard
@@ -462,7 +464,8 @@ function btwb_shortcode_leaderboard($atts) {
   return btwb_sc_html_tag(
     'btwb_gym_leaderboard',
     $BTWB_SHORTCODE_LEADERBOARD_PARAMS_LIST,
-    $atts);
+    $atts,
+    'Loading the Leaderboard from Beyond the Whiteboard');
 }
 
 
@@ -471,9 +474,9 @@ function btwb_shortcode_leaderboard($atts) {
 //
 
 // Create an HTML tag that the Javscript SDK will read and interpret.
-function btwb_sc_html_tag($tag_class, $params_list, $atts) {
+function btwb_sc_html_tag($tag_class, $params_list, $atts, $msg) {
   $params = btwb_sc_encode_params($params_list, $atts);
-  return "<div class='{$tag_class}' data-params='{$params}'></div>";
+  return "<div class='{$tag_class}' data-params='{$params}'><a class='btwb_landing_page' href='http://www.beyondthewhiteboard.com/'>{$msg}</a></div>";
 }
 
 // Get the HTML safe string of the json encoded shortcode parameters

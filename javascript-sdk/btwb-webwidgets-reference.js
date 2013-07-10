@@ -15,7 +15,14 @@ function btwbLoadElement($, apiKey, selector, url) {
     var element = $(e);
     var params = element.data("params");
     params.api_key = apiKey;
+
+    // Trigger the load
     btwbLoadHtml($, apiKey, element, url, params);
+
+    // Update the landing page anchor
+    $.each(element.find('a.btwb_landing_page'), function(i, anchor) {
+      $(anchor).attr('href', url.concat('?', $.param(params)));
+    });
   });
 }
 
