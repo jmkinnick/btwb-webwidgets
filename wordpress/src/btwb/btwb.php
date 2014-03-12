@@ -7,7 +7,7 @@ Author: Beyond the Whiteboard
 Description: BTWB Integration for your Gym's Wordpress site.
 License: GPLv2 or later
 */
-/*  Copyright 2013  BadPopcorn, Inc  (email: contact@badpopcorn.com)
+/*  Copyright 2013-2014 BadPopcorn, Inc  (email: contact@badpopcorn.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -69,7 +69,6 @@ function btwb_plugin_options_page() {
 // Settings Sections
 define('BTWB_S_GENERAL', 'btwb_section_general');
 define('BTWB_S_WOD', 'btwb_section_wod');
-define('BTWB_S_WOD_LIST', 'btwb_section_wod_list');
 define('BTWB_S_ACTIVITIES', 'btwb_section_activities');
 define('BTWB_S_LEADERBOARD', 'btwb_section_leaderboard');
 
@@ -80,12 +79,6 @@ define('BTWB_SF_WOD_TRACKS', 'btwb_wod_tracks');
 define('BTWB_SF_WOD_SECTION', 'btwb_wod_section');
 define('BTWB_SF_WOD_LEADERBOARD_LENGTH', 'btwb_wod_leaderboard_length');
 define('BTWB_SF_WOD_ACTIVITIES_LENGTH', 'btwb_wod_activities_length');
-
-define('BTWB_SF_WOD_LIST_TRACKS', 'btwb_wod_list_tracks');
-define('BTWB_SF_WOD_LIST_SECTION', 'btwb_wod_list_section');
-define('BTWB_SF_WOD_LIST_DAYS_BACK', 'btwb_wod_list_days_back');
-define('BTWB_SF_WOD_LIST_LEADERBOARD_LENGTH', 'btwb_wod_list_leaderboard_length');
-define('BTWB_SF_WOD_LIST_ACTIVITIES_LENGTH', 'btwb_wod_list_activities_length');
 
 define('BTWB_SF_ACTIVITIES_LENGTH', 'btwb_activities_length');
 define('BTWB_SF_LEADERBOARD_LENGTH', 'btwb_leaderboard_length');
@@ -99,12 +92,6 @@ $BTWB_SETTINGS_FIELD_VALIDATION_RULES = array(
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '/^[0-9]+$/i',
   BTWB_SF_WOD_ACTIVITIES_LENGTH => '/^[0-9]+$/i',
 
-  BTWB_SF_WOD_LIST_TRACKS => '/^[A-Za-z0-9]+$/i',
-  BTWB_SF_WOD_LIST_SECTION => '/^[A-Za-z0-9]+$/i',
-  BTWB_SF_WOD_LIST_DAYS_BACK => '/^[0-9]+$/i',
-  BTWB_SF_WOD_LIST_LEADERBOARD_LENGTH => '/^[0-9]+$/i',
-  BTWB_SF_WOD_LIST_ACTIVITIES_LENGTH => '/^[0-9]+$/i',
-
   BTWB_SF_ACTIVITIES_LENGTH => '/^[0-9]+$/i',
   BTWB_SF_LEADERBOARD_LENGTH => '/^[0-9]+$/i'
 );
@@ -115,11 +102,6 @@ $BTWB_SETTINGS_FIELD_DEFAULTS = array(
   BTWB_SF_WOD_SECTION => 'main',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '3',
   BTWB_SF_WOD_ACTIVITIES_LENGTH => '0',
-  BTWB_SF_WOD_LIST_TRACKS => '0',
-  BTWB_SF_WOD_LIST_SECTION => 'main',
-  BTWB_SF_WOD_LIST_DAYS_BACK => '7',
-  BTWB_SF_WOD_LIST_LEADERBOARD_LENGTH => '3',
-  BTWB_SF_WOD_LIST_ACTIVITIES_LENGTH => '0',
   BTWB_SF_ACTIVITIES_LENGTH => '30',
   BTWB_SF_LEADERBOARD_LENGTH => '10'
 );
@@ -142,11 +124,6 @@ function btwb_admin_init(){
     BTWB_S_WOD,
     '[wod] Shortcode',
     'btwb_html_s_wod',
-    BTWB);
-  add_settings_section(
-    BTWB_S_WOD_LIST,
-    '[wod_list] Shortcode',
-    'btwb_html_s_wod_list',
     BTWB);
   add_settings_section(
     BTWB_S_ACTIVITIES,
@@ -190,36 +167,6 @@ function btwb_admin_init(){
     'btwb_html_sf_wod_activities_length',
     BTWB,
     BTWB_S_WOD);
-  add_settings_field(
-    BTWB_SF_WOD_LIST_TRACKS,
-    'Track',
-    'btwb_html_sf_wod_list_tracks',
-    BTWB,
-    BTWB_S_WOD_LIST);
-  add_settings_field(
-    BTWB_SF_WOD_LIST_SECTION,
-    'Section to Show',
-    'btwb_html_sf_wod_list_section',
-    BTWB,
-    BTWB_S_WOD_LIST);
-  add_settings_field(
-    BTWB_SF_WOD_LIST_DAYS_BACK,
-    'Number of Days Back of Wods',
-    'btwb_html_sf_wod_list_days_back',
-    BTWB,
-    BTWB_S_WOD_LIST);
-  add_settings_field(
-    BTWB_SF_WOD_LIST_LEADERBOARD_LENGTH,
-    'Leaderboard Display Length',
-    'btwb_html_sf_wod_list_leaderboard_length',
-    BTWB,
-    BTWB_S_WOD_LIST);
-  add_settings_field(
-    BTWB_SF_WOD_LIST_ACTIVITIES_LENGTH,
-    'Activity List Length',
-    'btwb_html_sf_wod_list_activities_length',
-    BTWB,
-    BTWB_S_WOD_LIST);
   add_settings_field(
     BTWB_SF_ACTIVITIES_LENGTH,
     'Activity List Length',
@@ -303,10 +250,6 @@ function btwb_html_s_wod() {
 ?><p>Settings for the [wod] shortcode.</p><?php
 }
 
-function btwb_html_s_wod_list() {
-?><p>Settings for the [wod_list] shortcode.</p><?php
-}
-
 function btwb_html_s_activities() {
 ?><p>Settings for the [activities] shortcode.</p><?php
 }
@@ -347,40 +290,6 @@ function btwb_html_sf_wod_leaderboard_length() {
 
 function btwb_html_sf_wod_activities_length() {
   btwb_html_h_text_input_tag(BTWB_SF_WOD_ACTIVITIES_LENGTH);
-}
-
-function btwb_html_sf_wod_list_tracks() {
-	$options = get_option('btwb_options');
-	$items = array("1", "2", "3", "4");
-	echo "<select id='btwb_wod_list_tracks' name='btwb_options[btwb_wod_list_tracks]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
-	foreach($items as $item) {
-		$selected = ($options['btwb_wod_list_tracks']==$item) ? 'selected="selected"' : '';
-		echo "<option value='$item' $selected>Track $item</option>";
-	}
-	echo "</select>";
-}
-
-function btwb_html_sf_wod_list_section() {
-	$options = get_option('btwb_options');
-	$items = array("Main", "All", "Pre", "Post");
-	echo "<select id='btwb_wod_list_section' name='btwb_options[btwb_wod_list_section]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
-	foreach($items as $item) {
-		$selected = ($options['btwb_wod_list_section']==$item) ? 'selected="selected"' : '';
-		echo "<option value='$item' $selected>$item</option>";
-	}
-	echo "</select>";
-}
-
-function btwb_html_sf_wod_list_days_back() {
-  btwb_html_h_text_input_tag(BTWB_SF_WOD_LIST_DAYS_BACK);
-}
-
-function btwb_html_sf_wod_list_leaderboard_length() {
-  btwb_html_h_text_input_tag(BTWB_SF_WOD_LIST_LEADERBOARD_LENGTH);
-}
-
-function btwb_html_sf_wod_list_activities_length() {
-  btwb_html_h_text_input_tag(BTWB_SF_WOD_LIST_ACTIVITIES_LENGTH);
 }
 
 function btwb_html_sf_activities_length() {
@@ -435,7 +344,6 @@ function btwb_javascript_print() {
 //
 
 add_shortcode('wod', 'btwb_shortcode_wod');
-add_shortcode('wod_list', 'btwb_shortcode_wod_list');
 add_shortcode('activities', 'btwb_shortcode_activities');
 add_shortcode('leaderboard', 'btwb_shortcode_leaderboard');
 
@@ -448,16 +356,9 @@ $BTWB_SHORTCODE_WOD_PARAMS_LIST = array(
   'tracks' => BTWB_SF_WOD_TRACKS,
   'gym_id' => false,
   'section' => BTWB_SF_WOD_SECTION,
+  'days' => 1,
   'leaderboard_length' => BTWB_SF_WOD_LEADERBOARD_LENGTH,
   'activities_length' => BTWB_SF_WOD_ACTIVITIES_LENGTH
-);
-$BTWB_SHORTCODE_WOD_LIST_PARAMS_LIST = array(
-  'tracks' => BTWB_SF_WOD_LIST_TRACKS,
-  'gym_id' => false,
-  'days' => BTWB_SF_WOD_LIST_DAYS_BACK,
-  'section' => BTWB_SF_WOD_LIST_SECTION,
-  'leaderboard_length' => BTWB_SF_WOD_LIST_LEADERBOARD_LENGTH,
-  'activities_length' => BTWB_SF_WOD_LIST_ACTIVITIES_LENGTH
 );
 $BTWB_SHORTCODE_ACTIVITIES_PARAMS_LIST = array(
   'gym_id' => false,
@@ -482,16 +383,6 @@ function btwb_shortcode_wod($atts) {
     $BTWB_SHORTCODE_WOD_PARAMS_LIST,
     $atts,
     'Loading the Wod from Beyond the Whiteboard');
-}
-
-// Create the [wod_list] shortcode for displaying track events.
-function btwb_shortcode_wod_list($atts) {
-  global $BTWB_SHORTCODE_WOD_LIST_PARAMS_LIST;
-  return btwb_sc_html_tag(
-    'btwb_gym_wod_list',
-    $BTWB_SHORTCODE_WOD_LIST_PARAMS_LIST,
-    $atts,
-    'Loading the Wods List from Beyond the Whiteboard');
 }
 
 // Create the [activities] shortcode for displaying gym activities
@@ -586,7 +477,6 @@ function btwb_tinymce_add_buttons($buttons) {
     $buttons,
     '|',
     'btwb_button_wod',
-    'btwb_button_wod_list',
     'btwb_button_activities',
     'btwb_button_leaderboard');
   return $buttons;
