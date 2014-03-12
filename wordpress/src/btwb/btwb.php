@@ -46,7 +46,7 @@ add_action('admin_menu', 'btwb_admin_add_page');
 function btwb_admin_add_page() {
   add_options_page(
     'Beyond the Whiteboard',
-    'Btwb Options',
+    'BTWB Options',
     'manage_options',
     BTWB,
     'btwb_plugin_options_page');
@@ -75,6 +75,7 @@ define('BTWB_S_LEADERBOARD', 'btwb_section_leaderboard');
 
 // Defines Settings Keys inside wordpress, NOT params to btwb webwidgets
 define('BTWB_SF_API_KEY', 'btwb_api_key');
+define('BTWB_SF_WOD_TRACK_IDS', 'btwb_wod_track_ids');
 define('BTWB_SF_WOD_SECTION', 'btwb_wod_section');
 define('BTWB_SF_WOD_LEADERBOARD_LENGTH', 'btwb_wod_leaderboard_length');
 define('BTWB_SF_WOD_ACTIVITIES_LENGTH', 'btwb_wod_activities_length');
@@ -88,6 +89,7 @@ define('BTWB_SF_LEADERBOARD_LENGTH', 'btwb_leaderboard_length');
 // Settings Fields Value validation regular expressions.
 $BTWB_SETTINGS_FIELD_VALIDATION_RULES = array(
   BTWB_SF_API_KEY => '/^[A-Za-z0-9]+$/i',
+  BTWB_SF_WOD_TRACK_IDS => '/^[A-Za-z0-9]+$/i',
   BTWB_SF_WOD_SECTION => '/^[A-Za-z0-9]+$/i',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '/^[0-9]+$/i',
   BTWB_SF_WOD_ACTIVITIES_LENGTH => '/^[0-9]+$/i',
@@ -101,15 +103,16 @@ $BTWB_SETTINGS_FIELD_VALIDATION_RULES = array(
 
 $BTWB_SETTINGS_FIELD_DEFAULTS = array(
   BTWB_SF_API_KEY => '',
-  BTWB_SF_WOD_SECTION => '',
+  BTWB_SF_WOD_TRACK_IDS => '0',
+  BTWB_SF_WOD_SECTION => 'main',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '3',
   BTWB_SF_WOD_ACTIVITIES_LENGTH => '0',
   BTWB_SF_WOD_LIST_DAYS_BACK => '7',
-  BTWB_SF_WOD_LIST_SECTION => '',
+  BTWB_SF_WOD_LIST_SECTION => 'main',
   BTWB_SF_WOD_LIST_LEADERBOARD_LENGTH => '3',
   BTWB_SF_WOD_LIST_ACTIVITIES_LENGTH => '0',
   BTWB_SF_ACTIVITIES_LENGTH => '30',
-  BTWB_SF_LEADERBOARD_LENGTH => '7'
+  BTWB_SF_LEADERBOARD_LENGTH => '10'
 );
 
 // Registers our Settings Fields into the system
@@ -150,13 +153,19 @@ function btwb_admin_init(){
   // Settings Fields
   add_settings_field(
     BTWB_SF_API_KEY,
-    'Web Widget Api Key',
+    'Gym ID <br/>(Found by looking at the URL of your Gym Profile, e.g. "http://beyondthewhiteboard.com/gyms/1-crossfit-kinnick")',
     'btwb_html_sf_api_key',
     BTWB,
     BTWB_S_GENERAL);
   add_settings_field(
+    BTWB_SF_WOD_TRACK_IDS,
+    'Track',
+    'btwb_html_sf_wod_track_ids',
+    BTWB,
+    BTWB_S_WOD);
+  add_settings_field(
     BTWB_SF_WOD_SECTION,
-    'Section (Pre, Main or Post)',
+    'Section',
     'btwb_html_sf_wod_section',
     BTWB,
     BTWB_S_WOD);
@@ -180,7 +189,7 @@ function btwb_admin_init(){
     BTWB_S_WOD_LIST);
   add_settings_field(
     BTWB_SF_WOD_LIST_SECTION,
-    'Sections to Show',
+    'Section to Show',
     'btwb_html_sf_wod_list_section',
     BTWB,
     BTWB_S_WOD_LIST);
@@ -267,7 +276,6 @@ function btwb_html_h_text_input_tag($key) {
 <?
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // HTML String Generation for Settings Panel.
 //
@@ -296,8 +304,26 @@ function btwb_html_sf_api_key() {
   btwb_html_h_text_input_tag(BTWB_SF_API_KEY);
 }
 
+function btwb_html_sf_wod_track_ids() {
+	$options = get_option('btwb_options');
+	$items = array("1", "2", "3", "4");
+	echo "<select id='btwb_wod_track_ids' name='btwb_options[btwb_wod_track_ids]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
+	foreach($items as $item) {
+		$selected = ($options['btwb_wod_track_ids']==$item) ? 'selected="selected"' : '';
+		echo "<option value='$item' $selected>Track $item</option>";
+	}
+	echo "</select>";
+}
+
 function btwb_html_sf_wod_section() {
-  btwb_html_h_text_input_tag(BTWB_SF_WOD_SECTION);
+	$options = get_option('btwb_options');
+	$items = array("Main", "All", "Pre", "Post");
+	echo "<select id='btwb_wod_section' name='btwb_options[btwb_wod_section]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
+	foreach($items as $item) {
+		$selected = ($options['btwb_wod_section']==$item) ? 'selected="selected"' : '';
+		echo "<option value='$item' $selected>$item</option>";
+	}
+	echo "</select>";
 }
 
 function btwb_html_sf_wod_leaderboard_length() {
@@ -386,7 +412,7 @@ add_shortcode('leaderboard', 'btwb_shortcode_leaderboard');
 
 $BTWB_SHORTCODE_WOD_PARAMS_LIST = array(
   'date' => false,
-  'track_ids' => false,
+  'track_ids' => BTWB_SF_WOD_TRACK_IDS,
   'gym_id' => false,
   'section' => BTWB_SF_WOD_SECTION,
   'leaderboard_length' => BTWB_SF_WOD_LEADERBOARD_LENGTH,
@@ -442,7 +468,7 @@ function btwb_shortcode_activities($atts) {
     'btwb_gym_activities',
     $BTWB_SHORTCODE_ACTIVITIES_PARAMS_LIST,
     $atts,
-    "Loading the Gym's Posts from Beyond the Whiteboard");
+    "Loading Recent Posts from Beyond the Whiteboard");
 }
 
 // Create the [leaderboard] shortcode for displaying the workout leaderboard
