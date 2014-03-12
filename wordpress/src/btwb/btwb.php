@@ -75,40 +75,49 @@ define('BTWB_S_LEADERBOARD', 'btwb_section_leaderboard');
 
 // Defines Settings Keys inside wordpress, NOT params to btwb webwidgets
 define('BTWB_SF_API_KEY', 'btwb_api_key');
-define('BTWB_SF_WOD_TRACK_IDS', 'btwb_wod_track_ids');
+
+define('BTWB_SF_WOD_TRACKS', 'btwb_wod_tracks');
 define('BTWB_SF_WOD_SECTION', 'btwb_wod_section');
 define('BTWB_SF_WOD_LEADERBOARD_LENGTH', 'btwb_wod_leaderboard_length');
 define('BTWB_SF_WOD_ACTIVITIES_LENGTH', 'btwb_wod_activities_length');
-define('BTWB_SF_WOD_LIST_DAYS_BACK', 'btwb_wod_list_days_back');
+
+define('BTWB_SF_WOD_LIST_TRACKS', 'btwb_wod_list_tracks');
 define('BTWB_SF_WOD_LIST_SECTION', 'btwb_wod_list_section');
+define('BTWB_SF_WOD_LIST_DAYS_BACK', 'btwb_wod_list_days_back');
 define('BTWB_SF_WOD_LIST_LEADERBOARD_LENGTH', 'btwb_wod_list_leaderboard_length');
 define('BTWB_SF_WOD_LIST_ACTIVITIES_LENGTH', 'btwb_wod_list_activities_length');
+
 define('BTWB_SF_ACTIVITIES_LENGTH', 'btwb_activities_length');
 define('BTWB_SF_LEADERBOARD_LENGTH', 'btwb_leaderboard_length');
 
 // Settings Fields Value validation regular expressions.
 $BTWB_SETTINGS_FIELD_VALIDATION_RULES = array(
   BTWB_SF_API_KEY => '/^[A-Za-z0-9]+$/i',
-  BTWB_SF_WOD_TRACK_IDS => '/^[A-Za-z0-9]+$/i',
+
+  BTWB_SF_WOD_TRACKS => '/^[A-Za-z0-9]+$/i',
   BTWB_SF_WOD_SECTION => '/^[A-Za-z0-9]+$/i',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '/^[0-9]+$/i',
   BTWB_SF_WOD_ACTIVITIES_LENGTH => '/^[0-9]+$/i',
-  BTWB_SF_WOD_LIST_DAYS_BACK => '/^[0-9]+$/i',
+
+  BTWB_SF_WOD_LIST_TRACKS => '/^[A-Za-z0-9]+$/i',
   BTWB_SF_WOD_LIST_SECTION => '/^[A-Za-z0-9]+$/i',
+  BTWB_SF_WOD_LIST_DAYS_BACK => '/^[0-9]+$/i',
   BTWB_SF_WOD_LIST_LEADERBOARD_LENGTH => '/^[0-9]+$/i',
   BTWB_SF_WOD_LIST_ACTIVITIES_LENGTH => '/^[0-9]+$/i',
+
   BTWB_SF_ACTIVITIES_LENGTH => '/^[0-9]+$/i',
   BTWB_SF_LEADERBOARD_LENGTH => '/^[0-9]+$/i'
 );
 
 $BTWB_SETTINGS_FIELD_DEFAULTS = array(
   BTWB_SF_API_KEY => '',
-  BTWB_SF_WOD_TRACK_IDS => '0',
+  BTWB_SF_WOD_TRACKS => '0',
   BTWB_SF_WOD_SECTION => 'main',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '3',
   BTWB_SF_WOD_ACTIVITIES_LENGTH => '0',
-  BTWB_SF_WOD_LIST_DAYS_BACK => '7',
+  BTWB_SF_WOD_LIST_TRACKS => '0',
   BTWB_SF_WOD_LIST_SECTION => 'main',
+  BTWB_SF_WOD_LIST_DAYS_BACK => '7',
   BTWB_SF_WOD_LIST_LEADERBOARD_LENGTH => '3',
   BTWB_SF_WOD_LIST_ACTIVITIES_LENGTH => '0',
   BTWB_SF_ACTIVITIES_LENGTH => '30',
@@ -158,9 +167,9 @@ function btwb_admin_init(){
     BTWB,
     BTWB_S_GENERAL);
   add_settings_field(
-    BTWB_SF_WOD_TRACK_IDS,
+    BTWB_SF_WOD_TRACKS,
     'Track',
-    'btwb_html_sf_wod_track_ids',
+    'btwb_html_sf_wod_tracks',
     BTWB,
     BTWB_S_WOD);
   add_settings_field(
@@ -182,15 +191,21 @@ function btwb_admin_init(){
     BTWB,
     BTWB_S_WOD);
   add_settings_field(
-    BTWB_SF_WOD_LIST_DAYS_BACK,
-    'Number of Days Back of Wods',
-    'btwb_html_sf_wod_list_days_back',
+    BTWB_SF_WOD_LIST_TRACKS,
+    'Track',
+    'btwb_html_sf_wod_list_tracks',
     BTWB,
     BTWB_S_WOD_LIST);
   add_settings_field(
     BTWB_SF_WOD_LIST_SECTION,
     'Section to Show',
     'btwb_html_sf_wod_list_section',
+    BTWB,
+    BTWB_S_WOD_LIST);
+  add_settings_field(
+    BTWB_SF_WOD_LIST_DAYS_BACK,
+    'Number of Days Back of Wods',
+    'btwb_html_sf_wod_list_days_back',
     BTWB,
     BTWB_S_WOD_LIST);
   add_settings_field(
@@ -304,12 +319,12 @@ function btwb_html_sf_api_key() {
   btwb_html_h_text_input_tag(BTWB_SF_API_KEY);
 }
 
-function btwb_html_sf_wod_track_ids() {
+function btwb_html_sf_wod_tracks() {
 	$options = get_option('btwb_options');
 	$items = array("1", "2", "3", "4");
-	echo "<select id='btwb_wod_track_ids' name='btwb_options[btwb_wod_track_ids]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
+	echo "<select id='btwb_wod_tracks' name='btwb_options[btwb_wod_tracks]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
 	foreach($items as $item) {
-		$selected = ($options['btwb_wod_track_ids']==$item) ? 'selected="selected"' : '';
+		$selected = ($options['btwb_wod_tracks']==$item) ? 'selected="selected"' : '';
 		echo "<option value='$item' $selected>Track $item</option>";
 	}
 	echo "</select>";
@@ -334,12 +349,30 @@ function btwb_html_sf_wod_activities_length() {
   btwb_html_h_text_input_tag(BTWB_SF_WOD_ACTIVITIES_LENGTH);
 }
 
-function btwb_html_sf_wod_list_days_back() {
-  btwb_html_h_text_input_tag(BTWB_SF_WOD_LIST_DAYS_BACK);
+function btwb_html_sf_wod_list_tracks() {
+	$options = get_option('btwb_options');
+	$items = array("1", "2", "3", "4");
+	echo "<select id='btwb_wod_list_tracks' name='btwb_options[btwb_wod_list_tracks]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
+	foreach($items as $item) {
+		$selected = ($options['btwb_wod_list_tracks']==$item) ? 'selected="selected"' : '';
+		echo "<option value='$item' $selected>Track $item</option>";
+	}
+	echo "</select>";
 }
 
 function btwb_html_sf_wod_list_section() {
-  btwb_html_h_text_input_tag(BTWB_SF_WOD_LIST_SECTION);
+	$options = get_option('btwb_options');
+	$items = array("Main", "All", "Pre", "Post");
+	echo "<select id='btwb_wod_list_section' name='btwb_options[btwb_wod_list_section]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
+	foreach($items as $item) {
+		$selected = ($options['btwb_wod_list_section']==$item) ? 'selected="selected"' : '';
+		echo "<option value='$item' $selected>$item</option>";
+	}
+	echo "</select>";
+}
+
+function btwb_html_sf_wod_list_days_back() {
+  btwb_html_h_text_input_tag(BTWB_SF_WOD_LIST_DAYS_BACK);
 }
 
 function btwb_html_sf_wod_list_leaderboard_length() {
@@ -412,14 +445,14 @@ add_shortcode('leaderboard', 'btwb_shortcode_leaderboard');
 
 $BTWB_SHORTCODE_WOD_PARAMS_LIST = array(
   'date' => false,
-  'track_ids' => BTWB_SF_WOD_TRACK_IDS,
+  'tracks' => BTWB_SF_WOD_TRACKS,
   'gym_id' => false,
   'section' => BTWB_SF_WOD_SECTION,
   'leaderboard_length' => BTWB_SF_WOD_LEADERBOARD_LENGTH,
   'activities_length' => BTWB_SF_WOD_ACTIVITIES_LENGTH
 );
 $BTWB_SHORTCODE_WOD_LIST_PARAMS_LIST = array(
-  'track_ids' => false,
+  'tracks' => BTWB_SF_WOD_LIST_TRACKS,
   'gym_id' => false,
   'days' => BTWB_SF_WOD_LIST_DAYS_BACK,
   'section' => BTWB_SF_WOD_LIST_SECTION,
