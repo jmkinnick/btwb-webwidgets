@@ -362,12 +362,12 @@ $BTWB_SHORTCODE_WOD_PARAMS_LIST = array(
 );
 $BTWB_SHORTCODE_ACTIVITY_PARAMS_LIST = array(
   'gym_id' => false,
-  'activity_length' => BTWB_SF_ACTIVITY_LENGTH
+  'length' => BTWB_SF_ACTIVITY_LENGTH
 );
 $BTWB_SHORTCODE_LEADERBOARD_PARAMS_LIST = array(
   'workout_id' => false,
   'gym_id' => false,
-  'leaderboard_length' => BTWB_SF_LEADERBOARD_LENGTH
+  'length' => BTWB_SF_LEADERBOARD_LENGTH
 );
 
 
