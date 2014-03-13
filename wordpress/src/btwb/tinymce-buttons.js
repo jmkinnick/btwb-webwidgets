@@ -58,7 +58,7 @@
         {
           title: 'Insert leaderboard',
           cmd: 'btwb_insert_shortcode_leaderboard',
-          image: url + '/images/leaderboard.png'
+          image: url + '/images/button_leaderboard.png'
         });
     },
   });
