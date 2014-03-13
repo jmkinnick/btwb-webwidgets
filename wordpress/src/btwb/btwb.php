@@ -139,7 +139,7 @@ function btwb_admin_init(){
   // Settings Fields
   add_settings_field(
     BTWB_SF_API_KEY,
-    'Gym ID <br/>(Found by looking at the URL of your Gym Profile, e.g. "http://beyondthewhiteboard.com/gyms/1-crossfit-kinnick")',
+    'Gym ID<br/>(Found in your Gym Profile URL, e.g. "http://btwb.co/gyms/1-crossfit-kinnick")',
     'btwb_html_sf_api_key',
     BTWB,
     BTWB_S_GENERAL);
