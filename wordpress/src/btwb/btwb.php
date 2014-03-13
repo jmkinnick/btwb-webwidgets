@@ -382,7 +382,7 @@ function btwb_shortcode_wod($atts) {
     'btwb_gym_wod',
     $BTWB_SHORTCODE_WOD_PARAMS_LIST,
     $atts,
-    'Loading the Wod from Beyond the Whiteboard');
+    'Loading the Wods from Beyond the Whiteboard');
 }
 
 // Create the [activities] shortcode for displaying gym activities
