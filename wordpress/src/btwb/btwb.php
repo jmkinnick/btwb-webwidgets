@@ -69,7 +69,7 @@ function btwb_plugin_options_page() {
 // Settings Sections
 define('BTWB_S_GENERAL', 'btwb_section_general');
 define('BTWB_S_WOD', 'btwb_section_wod');
-define('BTWB_S_ACTIVITIES', 'btwb_section_activities');
+define('BTWB_S_ACTIVITY', 'btwb_section_activity');
 define('BTWB_S_LEADERBOARD', 'btwb_section_leaderboard');
 
 // Defines Settings Keys inside wordpress, NOT params to btwb webwidgets
@@ -126,9 +126,9 @@ function btwb_admin_init(){
     'btwb_html_s_wod',
     BTWB);
   add_settings_section(
-    BTWB_S_ACTIVITIES,
-    '[activities] Shortcode',
-    'btwb_html_s_activities',
+    BTWB_S_ACTIVITY,
+    '[activity] Shortcode',
+    'btwb_html_s_activity',
     BTWB);
   add_settings_section(
     BTWB_S_LEADERBOARD,
@@ -172,7 +172,7 @@ function btwb_admin_init(){
     'Activity List Length',
     'btwb_html_sf_activity_length',
     BTWB,
-    BTWB_S_ACTIVITIES);
+    BTWB_S_ACTIVITY);
   add_settings_field(
     BTWB_SF_LEADERBOARD_LENGTH,
     'Leaderboard Display Length',
@@ -250,8 +250,8 @@ function btwb_html_s_wod() {
 ?><p>Settings for the [wod] shortcode.</p><?php
 }
 
-function btwb_html_s_activities() {
-?><p>Settings for the [activities] shortcode.</p><?php
+function btwb_html_s_activity() {
+?><p>Settings for the [activity] shortcode.</p><?php
 }
 
 function btwb_html_s_leaderboard() {
@@ -344,7 +344,7 @@ function btwb_javascript_print() {
 //
 
 add_shortcode('wod', 'btwb_shortcode_wod');
-add_shortcode('activities', 'btwb_shortcode_activities');
+add_shortcode('activity', 'btwb_shortcode_activity');
 add_shortcode('leaderboard', 'btwb_shortcode_leaderboard');
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -360,7 +360,7 @@ $BTWB_SHORTCODE_WOD_PARAMS_LIST = array(
   'leaderboard_length' => BTWB_SF_WOD_LEADERBOARD_LENGTH,
   'activity_length' => BTWB_SF_WOD_ACTIVITY_LENGTH
 );
-$BTWB_SHORTCODE_ACTIVITIES_PARAMS_LIST = array(
+$BTWB_SHORTCODE_ACTIVITY_PARAMS_LIST = array(
   'gym_id' => false,
   'activity_length' => BTWB_SF_ACTIVITY_LENGTH
 );
@@ -385,12 +385,12 @@ function btwb_shortcode_wod($atts) {
     'Loading the Wods from Beyond the Whiteboard');
 }
 
-// Create the [activities] shortcode for displaying gym activities
-function btwb_shortcode_activities($atts) {
-  global $BTWB_SHORTCODE_ACTIVITIES_PARAMS_LIST;
+// Create the [activity] shortcode for displaying gym activity
+function btwb_shortcode_activity($atts) {
+  global $BTWB_SHORTCODE_ACTIVITY_PARAMS_LIST;
   return btwb_sc_html_tag(
-    'btwb_gym_activities',
-    $BTWB_SHORTCODE_ACTIVITIES_PARAMS_LIST,
+    'btwb_gym_activity',
+    $BTWB_SHORTCODE_ACTIVITY_PARAMS_LIST,
     $atts,
     "Loading Recent Posts from Beyond the Whiteboard");
 }
@@ -477,7 +477,7 @@ function btwb_tinymce_add_buttons($buttons) {
     $buttons,
     '|',
     'btwb_button_wod',
-    'btwb_button_activities',
+    'btwb_button_activity',
     'btwb_button_leaderboard');
   return $buttons;
 }

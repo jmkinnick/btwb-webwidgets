@@ -1,5 +1,5 @@
 var BTWB_GYM_WOD_URL = "//localhost:3000/webwidgets/gyms/wods";
-var BTWB_GYM_ACTIVITIES_URL = "//localhost:3000/webwidgets/gyms/activities";
+var BTWB_GYM_ACTIVITY_URL = "//localhost:3000/webwidgets/gyms/activities";
 var BTWB_GYM_LEADERBOARD_URL = "//localhost:3000/webwidgets/gyms/leaderboard";
 
 // Uses JSONP to load HTML into an element.
@@ -38,7 +38,7 @@ function btwbInitialize($, config) {
   var apiKey = config.apiKey
   $(function() {
     btwbLoadElement($, apiKey, ".btwb_gym_wod", BTWB_GYM_WOD_URL);
-    btwbLoadElement($, apiKey, ".btwb_gym_activities", BTWB_GYM_ACTIVITIES_URL);
+    btwbLoadElement($, apiKey, ".btwb_gym_activity", BTWB_GYM_ACTIVITY_URL);
     btwbLoadElement($, apiKey, ".btwb_gym_leaderboard", BTWB_GYM_LEADERBOARD_URL);
   });
 };

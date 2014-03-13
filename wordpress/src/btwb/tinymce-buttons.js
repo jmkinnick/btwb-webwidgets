@@ -33,8 +33,8 @@
       // Register commands for each short code
       ed.addCommand('btwb_insert_shortcode_wod',
         wod_shortcode_adder('wod'));
-      ed.addCommand('btwb_insert_shortcode_activities',
-        shortcode_adder('activities', null, null));
+      ed.addCommand('btwb_insert_shortcode_activity',
+        shortcode_adder('activity', null, null));
       ed.addCommand('btwb_insert_shortcode_leaderboard',
         shortcode_adder('leaderboard', workoutid_prompt, 'workout_id'));
 
@@ -47,11 +47,11 @@
           image: url + '/images/button_wod.png'
         });
       ed.addButton(
-        'btwb_button_activities',
+        'btwb_button_activity',
         {
           title: 'Insert Gym Activity',
-          cmd: 'btwb_insert_shortcode_activities',
-          image: url + '/images/button_activities.png'
+          cmd: 'btwb_insert_shortcode_activity',
+          image: url + '/images/button_activity.png'
         });
       ed.addButton(
         'btwb_button_leaderboard',
