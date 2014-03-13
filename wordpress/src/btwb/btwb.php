@@ -76,7 +76,7 @@ define('BTWB_S_LEADERBOARD', 'btwb_section_leaderboard');
 define('BTWB_SF_API_KEY', 'btwb_api_key');
 
 define('BTWB_SF_WOD_TRACKS', 'btwb_wod_tracks');
-define('BTWB_SF_WOD_SECTION', 'btwb_wod_section');
+define('BTWB_SF_WOD_SECTIONS', 'btwb_wod_sections');
 define('BTWB_SF_WOD_LEADERBOARD_LENGTH', 'btwb_wod_leaderboard_length');
 define('BTWB_SF_WOD_ACTIVITIES_LENGTH', 'btwb_wod_activities_length');
 
@@ -88,7 +88,7 @@ $BTWB_SETTINGS_FIELD_VALIDATION_RULES = array(
   BTWB_SF_API_KEY => '/^[A-Za-z0-9]+$/i',
 
   BTWB_SF_WOD_TRACKS => '/^[A-Za-z0-9]+$/i',
-  BTWB_SF_WOD_SECTION => '/^[A-Za-z0-9]+$/i',
+  BTWB_SF_WOD_SECTIONS => '/^[A-Za-z0-9]+$/i',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '/^[0-9]+$/i',
   BTWB_SF_WOD_ACTIVITIES_LENGTH => '/^[0-9]+$/i',
 
@@ -99,7 +99,7 @@ $BTWB_SETTINGS_FIELD_VALIDATION_RULES = array(
 $BTWB_SETTINGS_FIELD_DEFAULTS = array(
   BTWB_SF_API_KEY => '',
   BTWB_SF_WOD_TRACKS => '0',
-  BTWB_SF_WOD_SECTION => 'main',
+  BTWB_SF_WOD_SECTIONS => 'main',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '3',
   BTWB_SF_WOD_ACTIVITIES_LENGTH => '0',
   BTWB_SF_ACTIVITIES_LENGTH => '30',
@@ -152,7 +152,7 @@ function btwb_admin_init(){
   add_settings_field(
     BTWB_SF_WOD_SECTION,
     'Section',
-    'btwb_html_sf_wod_section',
+    'btwb_html_sf_wod_sections',
     BTWB,
     BTWB_S_WOD);
   add_settings_field(
@@ -273,12 +273,12 @@ function btwb_html_sf_wod_tracks() {
 	echo "</select>";
 }
 
-function btwb_html_sf_wod_section() {
+function btwb_html_sf_wod_sections() {
 	$options = get_option('btwb_options');
 	$items = array("Main", "All", "Pre", "Post");
-	echo "<select id='btwb_wod_section' name='btwb_options[btwb_wod_section]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
+	echo "<select id='btwb_wod_sections' name='btwb_options[btwb_wod_sections]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
 	foreach($items as $item) {
-		$selected = ($options['btwb_wod_section']==$item) ? 'selected="selected"' : '';
+		$selected = ($options['btwb_wod_sections']==$item) ? 'selected="selected"' : '';
 		echo "<option value='$item' $selected>$item</option>";
 	}
 	echo "</select>";
@@ -355,7 +355,7 @@ $BTWB_SHORTCODE_WOD_PARAMS_LIST = array(
   'date' => false,
   'tracks' => BTWB_SF_WOD_TRACKS,
   'gym_id' => false,
-  'section' => BTWB_SF_WOD_SECTION,
+  'sections' => BTWB_SF_WOD_SECTIONS,
   'days' => 1,
   'leaderboard_length' => BTWB_SF_WOD_LEADERBOARD_LENGTH,
   'activities_length' => BTWB_SF_WOD_ACTIVITIES_LENGTH
