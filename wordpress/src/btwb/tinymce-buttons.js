@@ -42,21 +42,21 @@
       ed.addButton(
         'btwb_button_wod',
         {
-          title: 'Insert wod',
+          title: 'Insert WOD',
           cmd: 'btwb_insert_shortcode_wod',
           image: url + '/images/button_wod.png'
         });
       ed.addButton(
         'btwb_button_activities',
         {
-          title: 'Insert activities',
+          title: 'Insert Gym Activity',
           cmd: 'btwb_insert_shortcode_activities',
           image: url + '/images/button_activities.png'
         });
       ed.addButton(
         'btwb_button_leaderboard',
         {
-          title: 'Insert leaderboard',
+          title: 'Insert Leaderboard',
           cmd: 'btwb_insert_shortcode_leaderboard',
           image: url + '/images/button_leaderboard.png'
         });
