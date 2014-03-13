@@ -5,6 +5,17 @@
   var workoutid_prompt =
     "Enter Numeric WorkoutId for Leaderboard (eg 1)";
 
+  var wod_shortcode_adder = function(shortcode) {
+    return function() {
+      var date = new Date();
+      var dateStr = ''.concat(date.getFullYear(), '-', date.getMonth()+1, '-', date.getDate()+1);
+      var attrValue = ' '.concat('date', '="', dateStr, '"');
+      var selected = tinyMCE.activeEditor.selection.getContent();
+      content = selected.concat('[', shortcode, attrValue, ']');
+      tinymce.execCommand('mceInsertContent', false, content);
+    };
+  }
+
   var shortcode_adder = function(shortcode, promptStr, attrName) {
     return function() {
       var attrValue = '';
@@ -21,9 +32,7 @@
     init : function(ed, url) {
       // Register commands for each short code
       ed.addCommand('btwb_insert_shortcode_wod',
-        shortcode_adder('wod', date_prompt, 'date'));
-      ed.addCommand('btwb_insert_shortcode_wod_list',
-        shortcode_adder('wod_list', date_prompt, 'date'));
+        wod_shortcode_adder('wod'));
       ed.addCommand('btwb_insert_shortcode_activities',
         shortcode_adder('activities', null, null));
       ed.addCommand('btwb_insert_shortcode_leaderboard',
@@ -36,13 +45,6 @@
           title: 'Insert wod',
           cmd: 'btwb_insert_shortcode_wod',
           image: url + '/images/button_wod.png'
-        });
-      ed.addButton(
-        'btwb_button_wod_list',
-        {
-          title: 'Insert wod_list',
-          cmd: 'btwb_insert_shortcode_wod_list',
-          image: url + '/images/button_wod_list.png'
         });
       ed.addButton(
         'btwb_button_activities',
