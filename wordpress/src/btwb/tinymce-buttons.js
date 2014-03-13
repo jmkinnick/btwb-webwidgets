@@ -3,7 +3,7 @@
   var date_prompt =
     "Enter Date (Format YYYY-MM-DD, eg 2013-02-29)";
   var workoutid_prompt =
-    "Enter Numeric WorkoutId for Leaderboard (eg 1)";
+    "Enter Numeric Workout Id for Leaderboard (eg 1 for Fran)";
 
   var wod_shortcode_adder = function(shortcode) {
     return function() {

@@ -382,7 +382,7 @@ function btwb_shortcode_wod($atts) {
     'btwb_gym_wod',
     $BTWB_SHORTCODE_WOD_PARAMS_LIST,
     $atts,
-    'Loading the Wods from Beyond the Whiteboard');
+    'Loading the WODs from Beyond the Whiteboard');
 }
 
 // Create the [activity] shortcode for displaying gym activity
@@ -392,7 +392,7 @@ function btwb_shortcode_activity($atts) {
     'btwb_gym_activity',
     $BTWB_SHORTCODE_ACTIVITY_PARAMS_LIST,
     $atts,
-    "Loading Recent Posts from Beyond the Whiteboard");
+    "Loading Recent Gym Activity from Beyond the Whiteboard");
 }
 
 // Create the [leaderboard] shortcode for displaying the workout leaderboard
@@ -402,7 +402,7 @@ function btwb_shortcode_leaderboard($atts) {
     'btwb_gym_leaderboard',
     $BTWB_SHORTCODE_LEADERBOARD_PARAMS_LIST,
     $atts,
-    'Loading the Leaderboard from Beyond the Whiteboard');
+    'Loading the Workout Leaderboard from Beyond the Whiteboard');
 }
 
 
