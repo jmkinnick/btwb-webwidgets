@@ -78,9 +78,9 @@ define('BTWB_SF_API_KEY', 'btwb_api_key');
 define('BTWB_SF_WOD_TRACKS', 'btwb_wod_tracks');
 define('BTWB_SF_WOD_SECTIONS', 'btwb_wod_sections');
 define('BTWB_SF_WOD_LEADERBOARD_LENGTH', 'btwb_wod_leaderboard_length');
-define('BTWB_SF_WOD_ACTIVITIES_LENGTH', 'btwb_wod_activities_length');
+define('BTWB_SF_WOD_ACTIVITY_LENGTH', 'btwb_wod_activity_length');
 
-define('BTWB_SF_ACTIVITIES_LENGTH', 'btwb_activities_length');
+define('BTWB_SF_ACTIVITY_LENGTH', 'btwb_activity_length');
 define('BTWB_SF_LEADERBOARD_LENGTH', 'btwb_leaderboard_length');
 
 // Settings Fields Value validation regular expressions.
@@ -90,9 +90,9 @@ $BTWB_SETTINGS_FIELD_VALIDATION_RULES = array(
   BTWB_SF_WOD_TRACKS => '/^[A-Za-z0-9]+$/i',
   BTWB_SF_WOD_SECTIONS => '/^[A-Za-z0-9]+$/i',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '/^[0-9]+$/i',
-  BTWB_SF_WOD_ACTIVITIES_LENGTH => '/^[0-9]+$/i',
+  BTWB_SF_WOD_ACTIVITY_LENGTH => '/^[0-9]+$/i',
 
-  BTWB_SF_ACTIVITIES_LENGTH => '/^[0-9]+$/i',
+  BTWB_SF_ACTIVITY_LENGTH => '/^[0-9]+$/i',
   BTWB_SF_LEADERBOARD_LENGTH => '/^[0-9]+$/i'
 );
 
@@ -101,8 +101,8 @@ $BTWB_SETTINGS_FIELD_DEFAULTS = array(
   BTWB_SF_WOD_TRACKS => '0',
   BTWB_SF_WOD_SECTIONS => 'main',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '3',
-  BTWB_SF_WOD_ACTIVITIES_LENGTH => '0',
-  BTWB_SF_ACTIVITIES_LENGTH => '30',
+  BTWB_SF_WOD_ACTIVITY_LENGTH => '0',
+  BTWB_SF_ACTIVITY_LENGTH => '30',
   BTWB_SF_LEADERBOARD_LENGTH => '10'
 );
 
@@ -162,15 +162,15 @@ function btwb_admin_init(){
     BTWB,
     BTWB_S_WOD);
   add_settings_field(
-    BTWB_SF_WOD_ACTIVITIES_LENGTH,
+    BTWB_SF_WOD_ACTIVITY_LENGTH,
     'Results List Length',
-    'btwb_html_sf_wod_activities_length',
+    'btwb_html_sf_wod_activity_length',
     BTWB,
     BTWB_S_WOD);
   add_settings_field(
-    BTWB_SF_ACTIVITIES_LENGTH,
+    BTWB_SF_ACTIVITY_LENGTH,
     'Activity List Length',
-    'btwb_html_sf_activities_length',
+    'btwb_html_sf_activity_length',
     BTWB,
     BTWB_S_ACTIVITIES);
   add_settings_field(
@@ -288,12 +288,12 @@ function btwb_html_sf_wod_leaderboard_length() {
   btwb_html_h_text_input_tag(BTWB_SF_WOD_LEADERBOARD_LENGTH);
 }
 
-function btwb_html_sf_wod_activities_length() {
-  btwb_html_h_text_input_tag(BTWB_SF_WOD_ACTIVITIES_LENGTH);
+function btwb_html_sf_wod_activity_length() {
+  btwb_html_h_text_input_tag(BTWB_SF_WOD_ACTIVITY_LENGTH);
 }
 
-function btwb_html_sf_activities_length() {
-  btwb_html_h_text_input_tag(BTWB_SF_ACTIVITIES_LENGTH);
+function btwb_html_sf_activity_length() {
+  btwb_html_h_text_input_tag(BTWB_SF_ACTIVITY_LENGTH);
 }
 
 function btwb_html_sf_leaderboard_length() {
@@ -358,11 +358,11 @@ $BTWB_SHORTCODE_WOD_PARAMS_LIST = array(
   'sections' => BTWB_SF_WOD_SECTIONS,
   'days' => 1,
   'leaderboard_length' => BTWB_SF_WOD_LEADERBOARD_LENGTH,
-  'activities_length' => BTWB_SF_WOD_ACTIVITIES_LENGTH
+  'activity_length' => BTWB_SF_WOD_ACTIVITY_LENGTH
 );
 $BTWB_SHORTCODE_ACTIVITIES_PARAMS_LIST = array(
   'gym_id' => false,
-  'activities_length' => BTWB_SF_ACTIVITIES_LENGTH
+  'activity_length' => BTWB_SF_ACTIVITY_LENGTH
 );
 $BTWB_SHORTCODE_LEADERBOARD_PARAMS_LIST = array(
   'workout_id' => false,
