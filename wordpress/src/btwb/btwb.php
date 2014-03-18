@@ -27,8 +27,8 @@ License: GPLv2 or later
 // JAVASCRIPT SDK INTEGRATION PARAMETERS
 //
 define('BTWB_JAVASCRIPT_SDK_URL',
-  '//assets.beyondthewhiteboard.com/webwidgets/javascript/v1/btwb-webwidgets-reference.js');
-  //'//assets.beyondthewhiteboard.com/webwidgets/javascript/v1/all.js');
+  //'//assets.beyondthewhiteboard.com/webwidgets/javascript/v1/btwb-webwidgets-reference.js');
+  '//assets.beyondthewhiteboard.com/webwidgets/javascript/v1/all.js');
 define('BTWB_JAVASCRIPT_INIT_FILE', 'init.js');
 define('BTWB_JAVASCRIPT_CONFIG_OBJECT_NAME', 'BTWB_CONFIG');
 define('BTWB_JAVASCRIPT_API_KEY_PROPERTY', 'apiKey');
