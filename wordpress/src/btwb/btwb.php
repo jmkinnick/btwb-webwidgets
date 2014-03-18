@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Beyond the Whiteboard
-Plugin URI: http://www.beyondthewhiteboard.com/apps/wordpress
+Plugin URI: http://blog.beyondthewhiteboard.com/wordpress-plugin/
 Version: 0.1
 Author: Beyond the Whiteboard
 Description: BTWB Integration for your Gym's Wordpress site.
@@ -57,6 +57,7 @@ function btwb_plugin_options_page() {
 ?>
 <div>
 <h2>Beyond the Whiteboard Options</h2>
+<p>For Help: <a href="http://blog.beyondthewhiteboard.com/wordpress-plugin/">http://blog.beyondthewhiteboard.com/wordpress-plugin/</a></p>
 <form action="options.php" method="post">
 <?php settings_fields(BTWB_OPTIONS); ?>
 <?php do_settings_sections(BTWB); ?> 
