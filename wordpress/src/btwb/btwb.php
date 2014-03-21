@@ -26,12 +26,17 @@ License: GPLv2 or later
 ///////////////////////////////////////////////////////////////////////////////
 // JAVASCRIPT SDK INTEGRATION PARAMETERS
 //
-define('BTWB_JAVASCRIPT_SDK_URL',
-  //'//assets.beyondthewhiteboard.com/webwidgets/javascript/v1/btwb-webwidgets-reference.js');
-  '//assets.beyondthewhiteboard.com/webwidgets/javascript/v1/all.js');
 define('BTWB_JAVASCRIPT_INIT_FILE', 'init.js');
+define('BTWB_JAVASCRIPT_HOGAN_FILE', 'vendor/javascripts/hogan-2.0.0.js');
+define('BTWB_JAVASCRIPT_API_FILE', 'api.js');
 define('BTWB_JAVASCRIPT_CONFIG_OBJECT_NAME', 'BTWB_CONFIG');
 define('BTWB_JAVASCRIPT_API_KEY_PROPERTY', 'apiKey');
+
+define('BTWB_STYLESHEET_FILE', 'templates/style.css');
+
+define('BTWB_TEMPLATE_ACTIVITY', 'templates/activity.php');
+define('BTWB_TEMPLATE_WOD', 'templates/wod.php');
+define('BTWB_TEMPLATE_WORKOUT_LEADERBOARD', 'templates/workout_leaderboard.php');
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -307,13 +312,21 @@ function btwb_html_sf_leaderboard_length() {
 //
 
 add_action('init', 'btwb_javascript_register');
-add_action('wp_footer', 'btwb_javascript_print');
+add_action('wp_footer', 'btwb_template_print');
 
 function btwb_javascript_register() {
+  // Get javascript for the client side html template
+  wp_enqueue_script(
+    'btwb-javascript-hogan',
+    plugins_url(BTWB_JAVASCRIPT_HOGAN_FILE, __FILE__),
+    array(),
+    false,
+    true);
+
   // Get the SDK script loaded
   wp_enqueue_script(
-    'btwb-javascript-sdk',
-    BTWB_JAVASCRIPT_SDK_URL,
+    'btwb-javascript-api',
+    plugins_url(BTWB_JAVASCRIPT_API_FILE, __FILE__),
     array('jquery'),
     false,
     true);
@@ -322,7 +335,7 @@ function btwb_javascript_register() {
   wp_enqueue_script(
     'btwb-javascript-init',
     plugins_url(BTWB_JAVASCRIPT_INIT_FILE, __FILE__),
-    array('jquery', 'btwb-javascript-sdk'),
+    array('jquery', 'btwb-javascript-api'),
     false,
     true);
 
@@ -333,10 +346,33 @@ function btwb_javascript_register() {
     array(
       BTWB_JAVASCRIPT_API_KEY_PROPERTY => btwb_get_option(BTWB_SF_API_KEY)
     ));
+
+  // Get our stylesheet into the page.
+  wp_enqueue_style(
+    'btwb-stylesheet',
+    plugins_url(BTWB_STYLESHEET_FILE, __FILE__),
+    array(),
+    false,
+    'all');
 }
 
-function btwb_javascript_print() {
-  wp_print_scripts('btwb-javascript');
+function btwb_template_print() {
+  //wp_print_scripts('btwb-javascript');
+
+  // Activity Template
+  echo '<script type="text/template" id="btwb_gym_activity_template">';
+  include_once(plugin_dir_path(__FILE__) . BTWB_TEMPLATE_ACTIVITY);
+  echo '</script>';
+
+  // Wod Template
+  echo '<script type="text/template" id="btwb_gym_wod_template">';
+  include_once(plugin_dir_path(__FILE__) . BTWB_TEMPLATE_WOD);
+  echo '</script>';
+
+  // Workout Leaderboard Template
+  echo '<script type="text/template" id="btwb_gym_workout_leaderboard_template">';
+  include_once(plugin_dir_path(__FILE__) . BTWB_TEMPLATE_WORKOUT_LEADERBOARD);
+  echo '</script>';
 }
 
 
@@ -400,7 +436,7 @@ function btwb_shortcode_activity($atts) {
 function btwb_shortcode_leaderboard($atts) {
   global $BTWB_SHORTCODE_LEADERBOARD_PARAMS_LIST;
   return btwb_sc_html_tag(
-    'btwb_gym_leaderboard',
+    'btwb_gym_workout_leaderboard',
     $BTWB_SHORTCODE_LEADERBOARD_PARAMS_LIST,
     $atts,
     'Loading the Workout Leaderboard from Beyond the Whiteboard');
