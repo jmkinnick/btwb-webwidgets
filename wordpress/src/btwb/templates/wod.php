@@ -5,68 +5,126 @@
 <div>
   {{#wodsets}}
     <div>
-      {{track_name}} - {{date_string}}
-
-      <ul>
+      <ul class="btwb-wod-list">
       {{#wods}}
         <li>
-          Workout: {{workout_name}}<br/>
-          Description: {{workout_description}}</br>
-          Section: {{wod_section}}<br/>
-          Instructions: {{wod_instructions}}<br/>
+          <h5>{{workout_name}}</h5>
+	  <small><u>{{wod_section}}:</u> {{track_name}} - {{date_string}}</small>
+          <p class="btwb-workout-description">{{workout_description}}</p>
+          <p><i>{{wod_instructions}}</i></p>
+          <hr/>
 
-          <div>
-          Wod Leaderboard
           {{#wod_leaderboard}}
-            Male Results:
-            <ul>
-              {{#male_results}}
-                <li>
-                  {{member_name}}
-                  {{member_logo_url}}
-                  {{result}}
-                  {{notes}}
-                  {{session_time}}
-                  {{is_prescribed}}
-                  {{is_personal_record}}
-                </li>
-              {{/male_results}}
-            </ul>
+          <div class="btwb-leaderboard">
+		<div class="btwb-mens-leaderboard">
+		<h5>Men's Leaderboard</h5>
+			<hr/>
+			<ul class="btwb-result-list">
+			{{#male_results}}
+				<li>
+				    <h6>1</h6>
+				    <img src="{{member_logo_url}}" class="athlete-image"/>
+				    <div class="btwb-result-container">
+				    <div class="btwb-athlete-name">{{member_name}}</div>
+				            <div class="btwb-result-attributes">
+					    <span><small>{{session_date_string}}</small> via</span>
+				            <span> 
+						    <a href="http://www.beyondthewhiteboard.com">
+		     	    <img src="https://s3.amazonaws.com/assets.beyondthewhiteboard.com/images/btwb-icon.png"/></a></span>
+		{{#is_personal_record}}
+<span><img src="https://s3.amazonaws.com/assets.beyondthewhiteboard.com/images/personal_record_icon_width_15.png"/></span>	
+	        {{/is_personal_record}}
+	    </div>
+          
+	    <hr/>
+	    <div class="btwb-result">
+		<div class="btwb-result-score">
+			{{result}}
+			{{#is_prescribed}} | Rx'd {{/is_prescribed}}
+			{{^is_prescribed}} | Non Rx'd {{/is_prescribed}}
+		</div>
+		<div class="btwb-result-score-notes">{{notes}}</div>	      
+	    </div>
+    </div>
+  </li>
+{{/male_results}}
+</ul>
+</div>
+<div class="btwb-womens-leaderboard">
+<h5>Women's Leaderboard</h5>
+<hr/>
+<ul class="btwb-result-list">
+{{#female_results}}
+  <li>
+    <h6>1</h6>
+    <img src="{{member_logo_url}}" class="athlete-image"/>
+    <div class="btwb-result-container">
+	    <div class="btwb-athlete-name">{{member_name}}</div>
+            <div class="btwb-result-attributes">
+	    <span><small>{{session_date_string}}</small> via</span>
+            <span> 
+	    <a href="http://www.beyondthewhiteboard.com">
+     	    <img src="https://s3.amazonaws.com/assets.beyondthewhiteboard.com/images/btwb-icon.png"/></a></span>
+		{{#is_personal_record}}
+<span><img src="https://s3.amazonaws.com/assets.beyondthewhiteboard.com/images/personal_record_icon_width_15.png"/></span>	
+	        {{/is_personal_record}}
+	    </div>
+          
+	    <hr/>
+	    <div class="btwb-result">
+		<div class="btwb-result-score">
+			{{result}}
+			{{#is_prescribed}} | Rx'd {{/is_prescribed}}
+			{{^is_prescribed}} | Non Rx'd {{/is_prescribed}}
+		</div>
+		<div class="btwb-result-score-notes">{{notes}}</div>	      
+	    </div>
+    </div>
+  </li>
+{{/female_results}}
+</ul>
+</div>
+<div style="clear:both;"></div>
+</div>
+     {{/wod_leaderboard}}
+</div>
 
-            Female Results:
-            <ul>
-              {{#female_results}}
-                <li>
-                  {{member_name}}
-                  {{member_logo_url}}
-                  {{result}}
-                  {{notes}}
-                  {{session_time}}
-                  {{is_prescribed}}
-                  {{is_personal_record}}
-                </li>
-              {{/female_results}}
-            </ul>
-          {{/wod_leaderboard}}
-          </div>
 
-          <div>
-          Recent Results
-          Recent Results Count: {{wod_results_count}}
-          Recent Results URL: {{wod_results_url}}
-          <ul>
-            {{#wod_recent_results}}
-              <li>
-                {{member_name}}
-                {{member_logo_url}}
-                {{result}}
-                {{notes}}
-                {{session_time}}
-                {{is_prescribed}}
-                {{is_personal_record}}
-              </li>
-            {{/wod_recent_results}}
-          </ul>
+          <div class="btwb-recent-results">
+	 <hr/>
+          <h5><a href="{{wod_results_url}}">Recent WOD Results</a></h5>
+	  <small>Total: {{wod_results_count}}</small>
+<ul class="btwb-result-list">
+  {{#wod_recent_results}}
+    <li>
+    <img src="{{member_logo_url}}" class="athlete-image"/>
+    <div class="btwb-result-container">
+	    <div class="btwb-athlete-name">{{member_name}}</div>
+            <div class="btwb-result-attributes">
+	    <span><small>{{time_ago}}</small> via</span>
+            <span> 
+	    <a href="http://www.beyondthewhiteboard.com">
+     	    <img src="https://s3.amazonaws.com/assets.beyondthewhiteboard.com/images/btwb-icon.png"/></a></span>
+		{{#is_personal_record}}
+<span><img src="https://s3.amazonaws.com/assets.beyondthewhiteboard.com/images/personal_record_icon_width_15.png"/></span>	
+	        {{/is_personal_record}}
+	    </div>
+          
+	    <hr/>
+	    <div class="btwb-result">
+		<div class="btwb-result-score">
+			{{result}}
+			{{#is_prescribed}} | Rx'd {{/is_prescribed}}
+			{{^is_prescribed}} | Non Rx'd {{/is_prescribed}}
+		</div>
+		<div class="btwb-result-score-notes">{{notes}}</div>	      
+	    </div>
+    </div>
+  </li>
+  {{/wod_recent_results}}
+</ul>
+
+  
           </div>
         </li>
       {{/wods}}
@@ -80,3 +138,4 @@
     No Wods Assigned to Any Tracks For Given Date Range.
   {{/wodsets}}
 </div>
+
