@@ -1,10 +1,6 @@
-var BTWB_GYM_ACTIVITY_URL            = "//localhost:3000/api/webwidgets/gyms/activities";
-var BTWB_GYM_WOD_URL                 = "//localhost:3000/api/webwidgets/gyms/wodsets";
-var BTWB_GYM_WORKOUT_LEADERBOARD_URL = "//localhost:3000/api/webwidgets/gyms/workout_leaderboards";
-
-var BTWB_GYM_ACTIVITY_URL            = "//localhost:3000/empty.json";
-var BTWB_GYM_WOD_URL                 = "//localhost:3000/empty.json";
-var BTWB_GYM_WORKOUT_LEADERBOARD_URL = "//localhost:3000/empty.json";
+var BTWB_GYM_ACTIVITY_URL            = "//api.beyondthewhiteboard.com/api/webwidgets/gyms/activities";
+var BTWB_GYM_WOD_URL                 = "//api.beyondthewhiteboard.com/api/webwidgets/gyms/wodsets";
+var BTWB_GYM_WORKOUT_LEADERBOARD_URL = "//api.beyondthewhiteboard.com/api/webwidgets/gyms/workout_leaderboards";
 
 var TID_BTWB_GYM_ACTIVITY            = "#btwb_gym_activity_template";
 var TID_BTWB_GYM_WOD                 = "#btwb_gym_wod_template";
