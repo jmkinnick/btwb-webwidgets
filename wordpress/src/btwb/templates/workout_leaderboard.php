@@ -2,9 +2,8 @@
   <p>The workouts for this Gym are set to Members only.  To display them here, adjust the Gym Privacy Settings on Beyond the Whiteboard to Show WODs to "Everyone."</p>
 {{/is_public_gym}}
 
-<h4>{{workout.name}}</h4>
-{{workout_url}}<br/>
-{{workout_description}}<br/>
+<h4><a href="{{workout_url}}">{{workout_name}}</a></h4>
+<p class="btwb-workout-description">{{workout_description}}</p>
 
 <div class="btwb-leaderboard">
 
