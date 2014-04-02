@@ -27,7 +27,7 @@
 				    <div class="btwb-result-container">
 				    <div class="btwb-athlete-name">{{member_name}}</div>
 				            <div class="btwb-result-attributes">
-					    <span><small>{{session_date_string}}</small> via</span>
+					    <span><small>{{session_time}}</small> via</span>
 				            <span> 
 						    <a href="http://www.beyondthewhiteboard.com">
 		     	    <img src="https://s3.amazonaws.com/assets.beyondthewhiteboard.com/images/btwb-icon.png"/></a></span>
@@ -61,7 +61,7 @@
     <div class="btwb-result-container">
 	    <div class="btwb-athlete-name">{{member_name}}</div>
             <div class="btwb-result-attributes">
-	    <span><small>{{session_date_string}}</small> via</span>
+	    <span><small>{{session_time}}</small> via</span>
             <span> 
 	    <a href="http://www.beyondthewhiteboard.com">
      	    <img src="https://s3.amazonaws.com/assets.beyondthewhiteboard.com/images/btwb-icon.png"/></a></span>
@@ -90,10 +90,11 @@
 </div>
 
 
-          <div class="btwb-recent-results">
-	 <hr/>
-          <h5><a href="{{wod_results_url}}">Recent WOD Results</a></h5>
-	  <small>Total: {{wod_results_count}}</small>
+<div class="btwb-recent-results">
+<hr/>
+<h5><a href="{{wod_results_url}}">Recent WOD Results</a></h5>
+<small>Total: {{wod_results_count}}</small>
+
 <ul class="btwb-result-list">
   {{#wod_recent_results}}
     <li>
@@ -101,7 +102,7 @@
     <div class="btwb-result-container">
 	    <div class="btwb-athlete-name">{{member_name}}</div>
             <div class="btwb-result-attributes">
-	    <span><small>{{time_ago}}</small> via</span>
+	    <span><small>{{session_time}}</small> via</span>
             <span> 
 	    <a href="http://www.beyondthewhiteboard.com">
      	    <img src="https://s3.amazonaws.com/assets.beyondthewhiteboard.com/images/btwb-icon.png"/></a></span>

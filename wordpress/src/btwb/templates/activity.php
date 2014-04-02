@@ -23,6 +23,7 @@ Recent Gym Activity
           
 	    <hr/>
 	    <div class="btwb-result">
+		{{workout_name}}
 		<div class="btwb-result-score">
 			{{result}}
 			{{#is_prescribed}} | Rx'd {{/is_prescribed}}
@@ -40,4 +41,3 @@ Recent Gym Activity
 {{^activities}}
   There are no recent results. Please check back later.
 {{/activities}}
-
