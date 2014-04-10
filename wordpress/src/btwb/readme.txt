@@ -14,7 +14,7 @@ This plugin allows Gym Admins to create posts and pages with content from beyond
 4. Click “Upload” and choose the “btwb.zip” file you just downloaded.
 5. Click “Install Now”, then click “Activate” to activate the plugin.
 6. Click on WordPress “Settings” and select “BTWB Options”
-7. Set your Gym ID and specify your default settings.
+7. Set your Gym Public Access Key and specify your default settings.
 
 == Frequently Asked Questions ==
 = How do I find my Gym Public Access Key? =
