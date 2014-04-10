@@ -145,7 +145,7 @@ function btwb_admin_init(){
   // Settings Fields
   add_settings_field(
     BTWB_SF_API_KEY,
-    'Gym ID<br/>(Found in your Gym Profile URL, e.g. "http://btwb.co/gyms/1-crossfit-kinnick")',
+    'Public Api Key<br/>(Found in your Gym Admin Menu under Access Keys)',
     'btwb_html_sf_api_key',
     BTWB,
     BTWB_S_GENERAL);
