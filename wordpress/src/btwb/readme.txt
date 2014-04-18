@@ -14,11 +14,11 @@ This plugin allows Gym Admins to create posts and pages with content from beyond
 4. Click “Upload” and choose the “btwb.zip” file you just downloaded.
 5. Click “Install Now”, then click “Activate” to activate the plugin.
 6. Click on WordPress “Settings” and select “BTWB Options”
-7. Set your Gym ID and specify your default settings.
+7. Set your Gym Public Access Key and specify your default settings.
 
 == Frequently Asked Questions ==
-= How do I find my Gym ID? =
-Log into beyondthewhiteboard.com using an account with admin privileges.  Hover over the gym admin menu on the top right of the site.  Choose \"View Gym Profile\". When the page loads, look at the URL in your browser and identify the number in it.  That number is your Gym ID.  E.g. \"http://beyondthewhiteboard.com/gyms/1-crossfit-kinnick\".  The Gym ID for CrossFit Kinnick is \"1\".
+= How do I find my Gym Public Access Key? =
+Log into beyondthewhiteboard.com using an account with admin privileges.  Hover over the gym admin menu on the top right of the site.  Choose \"Access Keys\". When the page loads, create a brand new Access Key by clicking the \"Create Access Key\" button, or reuse an existing Public Access Key.
 
 == Screenshots ==
 1. wod shortcode

@@ -1,4 +1,12 @@
 /* Leaderboard and Result List */
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
 .btwb-mens-leaderboard{
 	float:left;
 	width:50%;
@@ -11,11 +19,19 @@
 	float:right;
 	width:50%;
 }
-.btwb-result-list{
+ul.btwb-result-list{
 	width:95%;
 	margin:20px 0px 0px 0px;
 	list-style-type:none;
+}
+ol.btwb-result-list{
+	width:95%;
+	margin:20px 0px 0px 0px;
+	list-style-position:inside;
 	
+}
+.btwb-result-list > li:before {
+	clear:both;
 }
 .btwb-leaderboard .btwb-result-list li{
 	height: 150px;
@@ -23,15 +39,11 @@
 .btwb-result-list li{
 	padding: 10px;
 	border-width: thin;
-	border-color: inherit;
+	border-color: #ccc;
 	border-style: solid;
 	margin-bottom: 20px;
 }
 .btwb-result-list li:after { 
-   content: "."; 
-   visibility: hidden; 
-   display: block; 
-   height: 0; 
    clear: both;
 }
 .btwb-result-list li h6{
@@ -40,7 +52,13 @@
 	margin-top: 4px;
 	min-width:15px;
 }
-.btwb-result-list li .athlete-image{
+ol.btwb-result-list li .athlete-image{
+        float:left;
+        margin:-19px 5px 0px 20px;
+	width:30px;
+	border-radius:20px;
+}
+ul.btwb-result-list li .athlete-image{
         float:left;
         margin-right:5px;
 	width:30px;
@@ -50,6 +68,7 @@
 	width:80%;
 	max-height:130px;
 	overflow:scroll;
+	margin-top:-16px;
 }
 .btwb-result-list li .btwb-result-container{
 	float:left;
