@@ -29,9 +29,10 @@
 	    <hr/>
 	    <div class="btwb-result">
 		<div class="btwb-result-score">
-			<a href="{{result_url}}">{{result}}</a>
+			<a href="{{result_url}}">{{result}}
 			{{#is_prescribed}} | Rx'd {{/is_prescribed}}
 			{{^is_prescribed}} | Non Rx'd {{/is_prescribed}}
+                        </a>
 		</div>
 		<div class="btwb-result-score-notes">{{notes}}</div>	      
 	    </div>
@@ -62,9 +63,10 @@
 	    <hr/>
 	    <div class="btwb-result">
 		<div class="btwb-result-score">
-			<a href="{{result_url}}">{{result}}</a>
+			<a href="{{result_url}}">{{result}}
 			{{#is_prescribed}} | Rx'd {{/is_prescribed}}
 			{{^is_prescribed}} | Non Rx'd {{/is_prescribed}}
+                        </a>
 		</div>
 		<div class="btwb-result-score-notes">{{notes}}</div>	      
 	    </div>
