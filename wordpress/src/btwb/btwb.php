@@ -465,19 +465,20 @@ function btwb_sc_encode_params($params_list, $atts) {
   return $params_htmlsafe;
 }
 
+// worker function since anonymous functions not avail until php 5.3+
+function btwb_sc_default_params__inner($value) {
+  if(is_string($value)) {
+    return btwb_get_option($value);
+  } else {
+    return NULL;
+  }
+}
+
 // This funtion takes the shortcode's params list, and grabs the
 // default from the plugin saved settings and returns an associative
 // array of the WebWidget's URL params to the default values.
 function btwb_sc_default_params($params_list) {
-  $func = function($value) {
-    if(is_string($value)) {
-      return btwb_get_option($value);
-    } else {
-      return NULL;
-    }
-  };
-  $params = array_map($func, $params_list);
-  return $params;
+  return array_map(btwb_sc_default_params__inner, $params_list);
 }
 
 
