@@ -112,6 +112,9 @@ ul.btwb-result-list li .athlete-image{
 	margin:0px 0px 0px 0px;
 	font-size:.9em;
 }
+.btwb-result-list li .btwb-result-container .btwb-result .btwb-workout-name{
+}
+
 .btwb-leaderboard hr{
 	margin:0px 0px 0px 0px;
 	padding:0px 0px 0px 0px;

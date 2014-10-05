@@ -2,7 +2,7 @@
 /*
 Plugin Name: Beyond the Whiteboard
 Plugin URI: http://blog.beyondthewhiteboard.com/wordpress-plugin/
-Version: 0.1
+Version: 0.2
 Author: Beyond the Whiteboard
 Description: BTWB Integration for your Gym's Wordpress site.
 License: GPLv2 or later
@@ -145,7 +145,7 @@ function btwb_admin_init(){
   // Settings Fields
   add_settings_field(
     BTWB_SF_API_KEY,
-    'Public Api Key<br/>(Found in your Gym Admin Menu under Access Keys)',
+    'Public Api Key<br/>(Found in your Gym Admin Menu under Wordpress Integration)',
     'btwb_html_sf_api_key',
     BTWB,
     BTWB_S_GENERAL);
@@ -253,15 +253,15 @@ function btwb_html_s_general() {
 }
 
 function btwb_html_s_wod() {
-?><p>Settings for the [wod] shortcode.</p><?php
+?><p>Default Settings for the [wod] shortcode.</p><?php
 }
 
 function btwb_html_s_activity() {
-?><p>Settings for the [activity] shortcode.</p><?php
+?><p>Default Settings for the [activity] shortcode.</p><?php
 }
 
 function btwb_html_s_leaderboard() {
-?><p>Settings for the [leaderboard] shortcode.</p><?php
+?><p>Default Settings for the [leaderboard] shortcode.</p><?php
 }
 
 function btwb_html_sf_api_key() {
@@ -270,7 +270,7 @@ function btwb_html_sf_api_key() {
 
 function btwb_html_sf_wod_tracks() {
 	$options = get_option('btwb_options');
-	$items = array("1", "2", "3", "4");
+	$items = array("1", "2", "3", "4", "5", "6");
 	echo "<select id='btwb_wod_tracks' name='btwb_options[btwb_wod_tracks]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
 	foreach($items as $item) {
 		$selected = ($options['btwb_wod_tracks']==$item) ? 'selected="selected"' : '';
