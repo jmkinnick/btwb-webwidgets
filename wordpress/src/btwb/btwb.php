@@ -69,7 +69,7 @@ function btwb_plugin_options_page() {
 <input name="Submit" type="submit" value="<?php esc_attr_e('Save Changes'); ?>" />
 </form>
 </div>
-<?
+<?php
 }
 
 // Settings Sections
@@ -156,7 +156,7 @@ function btwb_admin_init(){
     BTWB,
     BTWB_S_WOD);
   add_settings_field(
-    BTWB_SF_WOD_SECTION,
+    BTWB_SF_WOD_SECTIONS,
     'Section',
     'btwb_html_sf_wod_sections',
     BTWB,
@@ -241,7 +241,7 @@ function btwb_html_h_text_input_tag($key) {
     size="40"
     type="text"
     value="<?php echo $value ?>" />
-<?
+<?php
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -519,5 +519,3 @@ function btwb_tinymce_add_buttons($buttons) {
     'btwb_button_leaderboard');
   return $buttons;
 }
-
-?>
