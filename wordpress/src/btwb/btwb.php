@@ -2,7 +2,7 @@
 /*
 Plugin Name: Beyond the Whiteboard
 Plugin URI: http://blog.beyondthewhiteboard.com/wordpress-plugin/
-Version: 0.3
+Version: 1.3
 Author: Beyond the Whiteboard
 Description: BTWB Integration for your Gym's Wordpress site.
 License: GPLv2 or later
