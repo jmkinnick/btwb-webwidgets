@@ -2,14 +2,25 @@
   {{#wodsets}}
     <div>
       <ul class="btwb-wod-list">
-        {{#wods}}
+        {{#entries}}
         <li>
-          <h5>{{workout_name}}</h5>
+          <h5>{{wod_title}}</h5>
 	        <small><u>{{wod_section}}:</u> {{track_name}} - {{date_string}}</small>
-          <p class="btwb-workout-description">{{workout_description}}</p>
+          {{#workout}}
+            <h6>{{workout_name}}</h6>
+            <p class="btwb-workout-description">{{workout_description}}</p>
+          {{/workout}}
           <p><i>{{wod_instructions}}</i></p>
+          <ul class="btwb-wod-links">
+          {{#wod_links}}
+            <li>
+              <a href="{{url}}" target="_blank">{{title}}</a>
+            </li>
+          {{/wod_links}}
+          </ul>
           <hr/>
 
+          {{#workout}}
           {{#wod_leaderboard_show}}
           {{#wod_leaderboard}}
           <div class="btwb-leaderboard">
@@ -123,15 +134,16 @@
             <hr/>  
           </div>
           {{/wod_recent_results_show}}
+          {{/workout}}
         </li>
-        {{/wods}}
+        {{/entries}}
       </ul>
-        {{^wods}}
-          No Wods Assigned for this Track for this Date.
-        {{/wods}}
+        {{^entries}}
+          Nothing Assigned for this Track for this Date.
+        {{/entries}}
     </div>
   {{/wodsets}}
   {{^wodsets}}
-    No Wods Assigned to Any Tracks for Given Date Range.
+    Nothing Assigned to Any Tracks for Given Date Range.
   {{/wodsets}}
 </div>
