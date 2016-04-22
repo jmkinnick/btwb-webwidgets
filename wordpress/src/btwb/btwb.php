@@ -83,6 +83,7 @@ define('BTWB_SF_API_KEY', 'btwb_api_key');
 
 define('BTWB_SF_WOD_TRACKS', 'btwb_wod_tracks');
 define('BTWB_SF_WOD_SECTIONS', 'btwb_wod_sections');
+define('BTWB_SF_WOD_TYPES', 'btwb_wod_types');
 define('BTWB_SF_WOD_LEADERBOARD_LENGTH', 'btwb_wod_leaderboard_length');
 define('BTWB_SF_WOD_ACTIVITY_LENGTH', 'btwb_wod_activity_length');
 
@@ -95,6 +96,7 @@ $BTWB_SETTINGS_FIELD_VALIDATION_RULES = array(
 
   BTWB_SF_WOD_TRACKS => '/^[A-Za-z0-9]+$/i',
   BTWB_SF_WOD_SECTIONS => '/^[A-Za-z0-9]+$/i',
+  BTWB_SF_WOD_TYPES => '/^[A-Za-z_]+$/i',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '/^[0-9]+$/i',
   BTWB_SF_WOD_ACTIVITY_LENGTH => '/^[0-9]+$/i',
 
@@ -106,6 +108,7 @@ $BTWB_SETTINGS_FIELD_DEFAULTS = array(
   BTWB_SF_API_KEY => '',
   BTWB_SF_WOD_TRACKS => '0',
   BTWB_SF_WOD_SECTIONS => 'main',
+  BTWB_SF_WOD_TYPES => 'workout',
   BTWB_SF_WOD_LEADERBOARD_LENGTH => '3',
   BTWB_SF_WOD_ACTIVITY_LENGTH => '0',
   BTWB_SF_ACTIVITY_LENGTH => '10',
@@ -159,6 +162,12 @@ function btwb_admin_init(){
     BTWB_SF_WOD_SECTION,
     'Section',
     'btwb_html_sf_wod_sections',
+    BTWB,
+    BTWB_S_WOD);
+  add_settings_field(
+    BTWB_SF_WOD_TYPES,
+    'WOD Types',
+    'btwb_html_sf_wod_types',
     BTWB,
     BTWB_S_WOD);
   add_settings_field(
@@ -290,6 +299,17 @@ function btwb_html_sf_wod_sections() {
 	echo "</select>";
 }
 
+function btwb_html_sf_wod_types() {
+	$options = get_option('btwb_options');
+	$items = array("Workout", "All", "Note", "Rest_Day", "Weigh_In");
+	echo "<select id='btwb_wod_types' name='btwb_options[btwb_wod_types]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
+	foreach($items as $item) {
+		$selected = ($options['btwb_wod_types']==$item) ? 'selected="selected"' : '';
+		echo "<option value='$item' $selected>$item</option>";
+	}
+	echo "</select>";
+}
+
 function btwb_html_sf_wod_leaderboard_length() {
   btwb_html_h_text_input_tag(BTWB_SF_WOD_LEADERBOARD_LENGTH);
 }
@@ -393,6 +413,7 @@ $BTWB_SHORTCODE_WOD_PARAMS_LIST = array(
   'tracks' => BTWB_SF_WOD_TRACKS,
   'gym_id' => false,
   'sections' => BTWB_SF_WOD_SECTIONS,
+  'wod_types' => BTWB_SF_WOD_TYPES,
   'days' => 1,
   'leaderboard_length' => BTWB_SF_WOD_LEADERBOARD_LENGTH,
   'activity_length' => BTWB_SF_WOD_ACTIVITY_LENGTH
