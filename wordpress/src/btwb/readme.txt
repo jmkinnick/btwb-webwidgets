@@ -28,3 +28,6 @@ Log into beyondthewhiteboard.com using an account with admin privileges.  Hover 
 == Changelog ==
 = 1.0 =
 * Initial release.
+
+= 1.3 =
+* Adds wod_types option to wod shortcode
