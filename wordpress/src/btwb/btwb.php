@@ -2,7 +2,7 @@
 /*
 Plugin Name: Beyond the Whiteboard
 Plugin URI: http://blog.beyondthewhiteboard.com/wordpress-plugin/
-Version: 0.1
+Version: 0.3
 Author: Beyond the Whiteboard
 Description: BTWB Integration for your Gym's Wordpress site.
 License: GPLv2 or later
@@ -69,7 +69,7 @@ function btwb_plugin_options_page() {
 <input name="Submit" type="submit" value="<?php esc_attr_e('Save Changes'); ?>" />
 </form>
 </div>
-<?
+<?php
 }
 
 // Settings Sections
@@ -148,7 +148,7 @@ function btwb_admin_init(){
   // Settings Fields
   add_settings_field(
     BTWB_SF_API_KEY,
-    'Public Api Key<br/>(Found in your Gym Admin Menu under Access Keys)',
+    'Public Api Key<br/>(Found in your Gym Admin Menu under Wordpress Integration)',
     'btwb_html_sf_api_key',
     BTWB,
     BTWB_S_GENERAL);
@@ -159,7 +159,7 @@ function btwb_admin_init(){
     BTWB,
     BTWB_S_WOD);
   add_settings_field(
-    BTWB_SF_WOD_SECTION,
+    BTWB_SF_WOD_SECTIONS,
     'Section',
     'btwb_html_sf_wod_sections',
     BTWB,
@@ -250,7 +250,7 @@ function btwb_html_h_text_input_tag($key) {
     size="40"
     type="text"
     value="<?php echo $value ?>" />
-<?
+<?php
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -262,15 +262,15 @@ function btwb_html_s_general() {
 }
 
 function btwb_html_s_wod() {
-?><p>Settings for the [wod] shortcode.</p><?php
+?><p>Default Settings for the [wod] shortcode.</p><?php
 }
 
 function btwb_html_s_activity() {
-?><p>Settings for the [activity] shortcode.</p><?php
+?><p>Default Settings for the [activity] shortcode.</p><?php
 }
 
 function btwb_html_s_leaderboard() {
-?><p>Settings for the [leaderboard] shortcode.</p><?php
+?><p>Default Settings for the [leaderboard] shortcode.</p><?php
 }
 
 function btwb_html_sf_api_key() {
@@ -279,7 +279,7 @@ function btwb_html_sf_api_key() {
 
 function btwb_html_sf_wod_tracks() {
 	$options = get_option('btwb_options');
-	$items = array("1", "2", "3", "4");
+	$items = array("1", "2", "3", "4", "5", "6");
 	echo "<select id='btwb_wod_tracks' name='btwb_options[btwb_wod_tracks]' style='width: 100px;padding: 5px; background-color: #f2f2f2;border: 1px solid #ccc;'>";
 	foreach($items as $item) {
 		$selected = ($options['btwb_wod_tracks']==$item) ? 'selected="selected"' : '';
@@ -486,19 +486,20 @@ function btwb_sc_encode_params($params_list, $atts) {
   return $params_htmlsafe;
 }
 
+// worker function since anonymous functions not avail until php 5.3+
+function btwb_sc_default_params__inner($value) {
+  if(is_string($value)) {
+    return btwb_get_option($value);
+  } else {
+    return NULL;
+  }
+}
+
 // This funtion takes the shortcode's params list, and grabs the
 // default from the plugin saved settings and returns an associative
 // array of the WebWidget's URL params to the default values.
 function btwb_sc_default_params($params_list) {
-  $func = function($value) {
-    if(is_string($value)) {
-      return btwb_get_option($value);
-    } else {
-      return NULL;
-    }
-  };
-  $params = array_map($func, $params_list);
-  return $params;
+  return array_map(btwb_sc_default_params__inner, $params_list);
 }
 
 
@@ -539,5 +540,3 @@ function btwb_tinymce_add_buttons($buttons) {
     'btwb_button_leaderboard');
   return $buttons;
 }
-
-?>
