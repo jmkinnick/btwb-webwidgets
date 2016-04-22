@@ -14,7 +14,7 @@
           <ul class="btwb-wod-links">
           {{#wod_links}}
             <li>
-              <a href="{{url}}">{{title}}</a>
+              <a href="{{url}}" target="_blank">{{title}}</a>
             </li>
           {{/wod_links}}
           </ul>
