@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
 import SuperAgent from 'superagent';
 import URL from 'url';
+import './style_light.css';
 
 class Base extends Component {
   constructor(props, context, updater) {
@@ -34,10 +34,22 @@ class Base extends Component {
   }
 
   render() {
+    var sizeMe={
+      fontSize: "1.5em",
+      marginLeft: ".5em"
+    }
+
     if (this.state.data) {
       return this.renderSuccess();
-    } else {
+    } else if (this.state.error) {
       return this.renderError();
+    } else {
+      return (
+        <div className="myContainer">
+          <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+          <span className="sr-only" style={sizeMe}>Loading...</span>
+        </div>
+      );
     }
   }
 
@@ -61,4 +73,3 @@ class Base extends Component {
 }
 
 export default Base;
-

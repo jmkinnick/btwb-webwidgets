@@ -3,21 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <!-- FontAwesome -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <title>Btwb WebWidgets Test React App</title>
   </head>
   <body>
-    <div class="btwb_webwidget" data-type="wods" data-tracks="1"></div>
-    <div class="btwb_webwidget" data-type="RandomType"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div class="btwb_webwidget" data-type="wods" data-date="2016-01-01" data-sections="pre, main" data-tracks="1,2" data-activity_length="6" data-leaderboard_length="3" data-days="7"></div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <div class="btwb_webwidget" data-type="activities" data-length="10"></div>
 
-      To begin the development, run `npm start` in this folder.
-      To create a production bundle, use `npm run build`.
-    -->
-    <script id="btwb_config" data-api_key="MY_GYM_API_KEY"></script>
+    <div class="btwb_webwidget" data-type="leaders" data-workout_id="1" data-length="10"></div>
+
+    <script id="btwb_config" data-api_key="MY_API_KEY"></script>
   </body>
 </html>
