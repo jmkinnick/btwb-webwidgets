@@ -12,4 +12,3 @@ class InvalidWidgetTypeWidget extends Component {
 }
 
 export default InvalidWidgetTypeWidget;
-

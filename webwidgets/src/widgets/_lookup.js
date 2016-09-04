@@ -1,4 +1,3 @@
-
 import WodsWidget from './Wods';
 import ActivitiesWidget from './Activities';
 import LeadersWidget from './Leader';
@@ -16,4 +15,3 @@ export default function(widget_type) {
     return InvalidWidgetTypeWidget;
   }
 };
-

@@ -42,4 +42,3 @@ _.each(
     const Component = lookupWidget(props.widget_type);
     ReactDOM.render(<Component {...props} />, e);
   });
-
