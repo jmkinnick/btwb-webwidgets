@@ -18,7 +18,11 @@ class Activites extends Base {
   }
 
   renderError() {
-    return super.renderError();
+    return (
+      <div>
+        {this.renderActivitiesError()}
+      </div> 
+    ); 
   }
 
   renderPrIcon(activity) {
@@ -70,6 +74,30 @@ class Activites extends Base {
       </ul>
     ));
   }
+
+
+  renderActivitiesError() {
+    console.log(this.state.error)
+    var myStyle={
+      padding:"2em", 
+      textAlign:"center", 
+      backgroundColor:"black", 
+      color:"white"
+    }
+
+    return ( 
+      <div style={myStyle}>
+         <i className="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i>
+         <title>beyond the whiteboard - Forbidden (403)</title>
+         <h1>Access Denied</h1> 
+         <p>You do not have permission to access this resource.</p>
+         <a href={"http://support.beyondthewhiteboard.com/"}>
+         <img src={"//s3.amazonaws.com/assets.beyondthewhiteboard.com/images/btwb-logo-footer.png"} role="presentation"/>
+         </a> 
+      </div>
+    ) 
+  }
+
 }
 
 export default Activites;
