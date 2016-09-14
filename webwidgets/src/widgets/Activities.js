@@ -47,7 +47,7 @@ class Activites extends Base {
           <div className="btwb-result-container">
             <div className="btwb-athlete-name">{activity.workout_session.member_name}</div>
             <div className="btwb-result-attributes">
-              <span><small>{activity.workout_session.time_ago}</small>via</span>
+              <span><small>{activity.workout_session.time_ago}</small> via</span>
               <span>
                 <a href={activity.workout_session.result_url}>
                   <img src={I.BTWB_ICON} role="presentation"/>
