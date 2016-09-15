@@ -110,7 +110,7 @@ class Leaders extends Base {
     var myStyle={
       padding:"2em", 
       textAlign:"center", 
-      backgroundColor:"black", 
+      backgroundColor:"#22272b", 
       color:"white"
     }
 

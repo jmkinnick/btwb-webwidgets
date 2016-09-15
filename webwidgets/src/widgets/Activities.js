@@ -17,13 +17,16 @@ class Activites extends Base {
     );
   }
 
+  // renderError() {
+  //   return this.renderActivitiesError()
+  // }
+
+
   renderError() {
-    return (
-      <div>
-        {this.renderActivitiesError()}
-      </div> 
-    ); 
+    return super.renderError();
   }
+
+
 
   renderPrIcon(activity) {
     if (activity.workout_session.is_personal_record) {
