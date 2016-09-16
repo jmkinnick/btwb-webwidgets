@@ -36,7 +36,7 @@
       ed.addCommand('btwb_insert_shortcode_activity',
         shortcode_adder('activity', null, null));
       ed.addCommand('btwb_insert_shortcode_leaderboard',
-        shortcode_adder('leaderboard', workoutid_prompt, 'workout_id'));
+        shortcode_adder('leaderboard', workoutid_prompt, 'data-workout_id'));
 
       // Register buttons to trigger the above commands
       ed.addButton(

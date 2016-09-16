@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Beyond the Whiteboard REACT INTEGRATION TEST 
+Plugin Name: Beyond the Whiteboard - React Plugin 
 Plugin URI: http://blog.beyondthewhiteboard.com/wordpress-plugin/
 Version: 1.3
 Author: Beyond the Whiteboard
@@ -325,18 +325,16 @@ function btwb_html_sf_leaderboard_length() {
 add_action('wp_enqueue_scripts', 'include_react_files' );
 add_action('wp_footer', 'load_api_script_call');
 
+
+// add the react production builds CSS & JS file to the header
+// may include font-awesome script cdn loading
 function include_react_files() { 
-  // add the react production build CSS file to the header
   wp_enqueue_style( 'prefix-style', plugins_url('/build/static/css/main.ce27afef.css', __FILE__) );
-     
-  // add the react production build JS file to the footer - true as the last parameter
   wp_enqueue_script( 'plugin-scripts', plugins_url('/build/static/js/main.9fb40268.js', __FILE__), array(), '0.0.1', true );
-  
-  // may include font-awesome script cdn loading
 }
 
+// echo script tag with API key on page footer
 function load_api_script_call() {
-  // react load script
   $api_key = btwb_get_option(BTWB_SF_API_KEY); 
   echo "<script id='btwb_config' data-api_key='$api_key'></script>"; 
 }
@@ -397,8 +395,7 @@ function btwb_shortcode_activity($atts) {
 // Create the [leaderboard] shortcode for displaying the workout leaderboard
 function btwb_shortcode_leaderboard($atts) {
   global $BTWB_SHORTCODE_LEADERBOARD_PARAMS_LIST;
-  // return btwb_sc_html_tag('btwb_webwidget', $BTWB_SHORTCODE_LEADERBOARD_PARAMS_LIST, $atts, 'Loading the Workout Leaderboard from Beyond the Whiteboard');
-  return "<div class='btwb_webwidget' data-type='leaders' data-length='1'></div>"; 
+  return btwb_sc_html_tag('btwb_webwidget', $BTWB_SHORTCODE_LEADERBOARD_PARAMS_LIST, $atts, 'Loading the Workout Leaderboard from Beyond the Whiteboard');
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -415,7 +412,8 @@ function btwb_sc_html_tag($tag_class, $params_list, $atts, $msg) {
 function btwb_sc_encode_params($params_list, $atts) {
   // Get the defaults from the settings api for the shortcode's params list.
   // Then override those values with attributes from the shortcode tag itself.
-  // Eliminate null values, then map over the array pull keys and values
+  // Eliminate null values from the array
+  // Map over array, pull key-value pairs, format "attributes" (e.g, data-key = "") for injection in html. 
   $params_defaults = btwb_sc_default_params($params_list);
   $params = shortcode_atts($params_defaults, $atts);
   $params = array_filter($params, function($var){return !is_null($var);} );
