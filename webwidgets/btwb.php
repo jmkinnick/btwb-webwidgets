@@ -83,6 +83,10 @@ define('BTWB_SF_WOD_ACTIVITY_LENGTH', 'btwb_wod_activity_length');
 define('BTWB_SF_ACTIVITY_LENGTH', 'btwb_activity_length');
 define('BTWB_SF_LEADERBOARD_LENGTH', 'btwb_leaderboard_length');
 
+// CDN 
+define("BTWB_REACT_JS_ASSETS", 'https://rawgit.com/op-bk/btwb-webwidgets/master/production_test_btwb/js/web_widget.js');
+define("BTWB_REACT_CSS_ASSETS", 'https://rawgit.com/op-bk/btwb-webwidgets/master/production_test_btwb/css/web_widget.css');
+
 // Settings Fields Value validation regular expressions.
 $BTWB_SETTINGS_FIELD_VALIDATION_RULES = array(
   BTWB_SF_API_KEY => '/^[A-Za-z0-9]+$/i',
@@ -329,8 +333,8 @@ add_action('wp_footer', 'load_api_script_call');
 // add the react production builds CSS & JS file to the header
 // may include font-awesome script cdn loading
 function include_react_files() { 
-  wp_enqueue_style( 'prefix-style', plugins_url('/build/static/css/main.ce27afef.css', __FILE__) );
-  wp_enqueue_script( 'plugin-scripts', plugins_url('/build/static/js/main.9fb40268.js', __FILE__), array(), '0.0.1', true );
+  wp_enqueue_style( 'prefix-style', BTWB_REACT_CSS_ASSETS ); 
+  wp_enqueue_script( 'plugin-scripts', BTWB_REACT_JS_ASSETS, array(), '0.0.1', true ); 
 }
 
 // echo script tag with API key on page footer
