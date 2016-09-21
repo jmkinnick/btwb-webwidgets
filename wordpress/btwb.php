@@ -86,6 +86,7 @@ define('BTWB_SF_LEADERBOARD_LENGTH', 'btwb_leaderboard_length');
 // CDN 
 define("BTWB_REACT_JS_ASSETS", 'https://rawgit.com/op-bk/btwb-webwidgets/master/production_test_btwb/js/web_widget.js');
 define("BTWB_REACT_CSS_ASSETS", 'https://rawgit.com/op-bk/btwb-webwidgets/master/production_test_btwb/css/web_widget.css');
+define("BTWB_FONT_AWESOME_ASSETS", "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"); 
 
 // Settings Fields Value validation regular expressions.
 $BTWB_SETTINGS_FIELD_VALIDATION_RULES = array(
@@ -334,6 +335,7 @@ add_action('wp_footer', 'load_api_script_call');
 // may include font-awesome script cdn loading
 function include_react_files() { 
   wp_enqueue_style( 'prefix-style', BTWB_REACT_CSS_ASSETS ); 
+  wp_enqueue_style('font-awesome', BTWB_FONT_AWESOME_ASSETS); 
   wp_enqueue_script( 'plugin-scripts', BTWB_REACT_JS_ASSETS, array(), '0.0.1', true ); 
 }
 
