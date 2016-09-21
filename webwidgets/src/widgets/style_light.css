@@ -155,3 +155,10 @@ ul.btwb-result-list li .athlete-image{
 .align{
   clear:both;
 }
+
+.error_style { 
+  padding: 2em;
+  text-align: center;
+  background-color: #22272b;
+  color:white;
+}

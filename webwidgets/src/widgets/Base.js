@@ -35,10 +35,8 @@ class Base extends Component {
 
   render() {
     var sizeMe={
-      fontSize: "1.5em",
-      marginLeft: ".5em"
+      fontSize: "1.5em", marginLeft: ".5em"
     }
-
     if (this.state.data) {
       return this.renderSuccess();
     } else if (this.state.error) {
@@ -60,16 +58,21 @@ class Base extends Component {
   }
 
   renderError() {
-    return (
-      <div>
-        <h3>Request Error</h3>
-        <p>{JSON.stringify(this.state.error)}</p>
-        <h3>HTTP Response</h3>
-        <p>{JSON.stringify(this.state.httpResponse)}</p>
+    console.log(this.state.httpResponse)
+    console.log(this.state.error)
+    return ( 
+      <div className="error_style">
+         <i className="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i>
+         <title>beyond the whiteboard</title>
+         <h1> Error: {this.state.error.response.statusCode} {this.state.error.response.statusText} </h1> 
+         <p>You do not have permission to access this resource.</p> 
+         <p>Please see customer support at </p> 
+         <a href={"http://support.beyondthewhiteboard.com/"}>
+         <img src={"//s3.amazonaws.com/assets.beyondthewhiteboard.com/images/btwb-logo-footer.png"} role="presentation"/>
+         </a> 
       </div>
     );
   }
-
 }
 
 export default Base;
