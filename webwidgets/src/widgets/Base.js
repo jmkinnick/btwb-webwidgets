@@ -65,7 +65,7 @@ class Base extends Component {
          <i className="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i>
          <title>beyond the whiteboard</title>
          <h1> Error: {this.state.error.response.statusCode} {this.state.error.response.statusText} </h1> 
-         <p>You do not have permission to access this resource.</p> 
+         <p>Unable to access this resource.</p> 
          <p>Please see customer support at </p> 
          <a href={"http://support.beyondthewhiteboard.com/"}>
          <img src={"//s3.amazonaws.com/assets.beyondthewhiteboard.com/images/btwb-logo-footer.png"} role="presentation"/>
