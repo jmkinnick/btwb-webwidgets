@@ -40,7 +40,7 @@ class Wods extends Base {
             <div className="btwb-result">
               <div className="btwb-result-score">
                 <a href={male_leader.result_url}>{male_leader.result}
-                  {male_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non-Rxd" </span> }
+                  | {male_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non-Rxd" </span> }
                 </a>
               </div>
 
