@@ -40,7 +40,7 @@ class Leaders extends Base {
           <div className="btwb-result">
             <div className="btwb-result-score">
               <a href={male_leader.result_url}>{male_leader.result}
-                {male_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non-Rxd" </span> }
+                | {male_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non-Rxd" </span> }
               </a>
             </div>
             <div className="btwb-result-score-notes">{male_leader.notes}</div>
@@ -69,7 +69,7 @@ class Leaders extends Base {
             <div className="btwb-result">
               <div className="btwb-result-score">
                 <a href={female_leader.result_url}>{female_leader.result}
-                    {female_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non Rxd" </span> }
+                    | {female_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non Rxd" </span> }
                 </a>
               </div>
               <div className="btwb-result-score-notes">{female_leader.notes}</div>
