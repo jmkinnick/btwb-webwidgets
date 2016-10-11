@@ -87,14 +87,14 @@ class Leaders extends Base {
         <p className="btwb-workout-description">{this.state.data.workout_description}</p>
         <div className="btwb-leaderboard">
           <div className="btwb-mens-leaderboard">
-            <h5>Mens Leaderboard</h5>
+            <h5>Men's Leaderboard</h5>
             <hr/>
             <ol className="btwb-result-list">
               {this.renderMaleLeaders()}
             </ol>
           </div>
           <div className="btwb-womens-leaderboard">
-            <h5>Womens Leaderboard</h5>
+            <h5>Women's Leaderboard</h5>
             <hr/>
             <ol className="btwb-result-list">
               {this.renderFemaleLeaders()}
