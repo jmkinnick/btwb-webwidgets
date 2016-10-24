@@ -40,7 +40,7 @@ class Leaders extends Base {
           <div className="btwb-result">
             <div className="btwb-result-score">
               <a href={male_leader.result_url}>{male_leader.result}
-                {male_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non-Rxd" </span> }
+                | {male_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non-Rxd" </span> }
               </a>
             </div>
             <div className="btwb-result-score-notes">{male_leader.notes}</div>
@@ -69,7 +69,7 @@ class Leaders extends Base {
             <div className="btwb-result">
               <div className="btwb-result-score">
                 <a href={female_leader.result_url}>{female_leader.result}
-                    {female_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non Rxd" </span> }
+                    | {female_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non Rxd" </span> }
                 </a>
               </div>
               <div className="btwb-result-score-notes">{female_leader.notes}</div>
@@ -87,14 +87,14 @@ class Leaders extends Base {
         <p className="btwb-workout-description">{this.state.data.workout_description}</p>
         <div className="btwb-leaderboard">
           <div className="btwb-mens-leaderboard">
-            <h5>Mens Leaderboard</h5>
+            <h5>Men's Leaderboard</h5>
             <hr/>
             <ol className="btwb-result-list">
               {this.renderMaleLeaders()}
             </ol>
           </div>
           <div className="btwb-womens-leaderboard">
-            <h5>Womens Leaderboard</h5>
+            <h5>Women's Leaderboard</h5>
             <hr/>
             <ol className="btwb-result-list">
               {this.renderFemaleLeaders()}

@@ -70,7 +70,7 @@ class Wods extends Base {
         <div className="btwb-result">
           <div className="btwb-result-score">
             <a href={female_leader.result_url}>{female_leader.result}
-              {female_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non-Rxd" </span> }
+              | {female_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non-Rxd" </span> }
             </a>
           </div>
           <div className="btwb-result-score-notes">{female_leader.notes}</div>
@@ -97,7 +97,7 @@ class Wods extends Base {
           <div className="btwb-result">
             <div className="btwb-result-score">
               <a href={recent_results.result_url}>{recent_results.result}
-                {recent_results.is_prescribed ?  "Rxd" : "Non-Rxd" }
+                | {recent_results.is_prescribed ?  "Rxd" : "Non-Rxd" }
               </a>
             </div>
             <div className="btwb-result-score-notes">{recent_results.notes}</div>
@@ -136,7 +136,7 @@ class Wods extends Base {
 
       <div className="btwb-leaderboard">
         <div className="btwb-mens-leaderboard">
-          <h5>Mens Leaderboard</h5>
+          <h5>Men's Leaderboard</h5>
           <hr/>
           { wod_entries.workout.wod_leaderboard.male_results.length ?
             <ol className="btwb-result-list">
@@ -145,7 +145,7 @@ class Wods extends Base {
           : null }
         </div>
         <div className="btwb-womens-leaderboard">
-          <h5>Womens Leaderboard</h5>
+          <h5>Women's Leaderboard</h5>
           <hr/>
           { wod_entries.workout.wod_leaderboard.female_results.length ?
             <ol className="btwb-result-list">
