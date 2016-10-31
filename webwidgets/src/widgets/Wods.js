@@ -156,7 +156,9 @@ class Wods extends Base {
         <div className="align"></div>
       </div>
 
-      <hr />
+      { (wod_entries.workout.wod_leaderboard.female_results.length ||
+         wod_entries.workout.wod_leaderboard.male_results.length) ? <hr /> : null }
+
       { wod_entries.workout.wod_recent_results_show ?
         <div className="btwb-recent-results">
           <h5><a href={wod_entries.workout.wod_results_url}>Recent WOD Results</a></h5>
