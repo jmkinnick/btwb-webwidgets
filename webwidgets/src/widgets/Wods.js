@@ -40,7 +40,7 @@ class Wods extends Base {
             <div className="btwb-result">
               <div className="btwb-result-score">
                 <a href={male_leader.result_url}>{male_leader.result}
-                  | {male_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non-Rxd" </span> }
+                {male_leader.is_prescribed ? <span> | Rx'd </span> : <span> | Not Rx'd </span> }
                 </a>
               </div>
 
@@ -70,7 +70,7 @@ class Wods extends Base {
         <div className="btwb-result">
           <div className="btwb-result-score">
             <a href={female_leader.result_url}>{female_leader.result}
-              | {female_leader.is_prescribed ? <span> "Rxd" </span> : <span> "Non-Rxd" </span> }
+              {female_leader.is_prescribed ? <span> | Rx'd </span> : <span> | Not Rx'd </span> }
             </a>
           </div>
           <div className="btwb-result-score-notes">{female_leader.notes}</div>
@@ -97,7 +97,7 @@ class Wods extends Base {
           <div className="btwb-result">
             <div className="btwb-result-score">
               <a href={recent_results.result_url}>{recent_results.result}
-                | {recent_results.is_prescribed ?  "Rxd" : "Non-Rxd" }
+                {recent_results.is_prescribed ? <span> | Rx'd </span> : <span> | Not Rx'd </span> }
               </a>
             </div>
             <div className="btwb-result-score-notes">{recent_results.notes}</div>

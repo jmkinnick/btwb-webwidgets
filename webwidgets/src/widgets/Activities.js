@@ -33,9 +33,9 @@ class Activites extends Base {
 
   renderRxdSpan(activity) {
     if (activity.workout_session.is_prescribed) {
-      return (<span> Rxd </span>);
+      return (<span> | Rx'd </span>);
     } else {
-      return (<span> Not-Rxd </span>);
+      return (<span> | Not Rx'd </span>);
     }
   }
 
