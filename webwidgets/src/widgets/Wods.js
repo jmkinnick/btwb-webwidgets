@@ -135,24 +135,24 @@ class Wods extends Base {
       <hr/>
 
       <div className="btwb-leaderboard">
-        <div className="btwb-mens-leaderboard">
-          <h5>Men's Leaderboard</h5>
-          <hr/>
-          { wod_entries.workout.wod_leaderboard.male_results.length ?
-            <ol className="btwb-result-list">
-              {this.renderMaleLeaders(wod_entries)}
-            </ol>
+        { wod_entries.workout.wod_leaderboard.male_results.length ?
+            <div className="btwb-mens-leaderboard">
+              <h5>Men's Leaderboard</h5>
+              <hr/>
+              <ol className="btwb-result-list">
+                {this.renderMaleLeaders(wod_entries)}
+              </ol>
+            </div>
           : null }
-        </div>
-        <div className="btwb-womens-leaderboard">
-          <h5>Women's Leaderboard</h5>
-          <hr/>
-          { wod_entries.workout.wod_leaderboard.female_results.length ?
+        { wod_entries.workout.wod_leaderboard.female_results.length ?
+          <div className="btwb-womens-leaderboard">
+            <h5>Women's Leaderboard</h5>
+            <hr/>
             <ol className="btwb-result-list">
               {this.renderFemaleLeaders(wod_entries)}
             </ol>
+          </div>
           : null }
-        </div>
         <div className="align"></div>
       </div>
 
